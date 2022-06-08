@@ -28,6 +28,7 @@ html {
     height: 50px;
 }
 .header-navigationbar-open{
+    cursor: pointer;
     width: 27px;
     height: 27px;
     background-image: url("../icons/open.png");
@@ -68,9 +69,8 @@ html {
     margin-bottom: 8px;
 }
 .header-navigationbar {
-    opacity: 0;
+    display: none;
     position: absolute;
-    display: inline;
     justify-content: center;
     top: 0px;
     right: 0px;
