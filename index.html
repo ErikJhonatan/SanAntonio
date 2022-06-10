@@ -9,16 +9,17 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/main.css">
+    <script defer src="./js/header.js"></script>
 </head>
 <body>
     <header class="header">
         <div class="header-container1">
-            <div class="header__logo">
-                <img src="icons/Logo.png" alt="">
-            </div>
             <div class="header-shopcar">
                 <span> 0 </span>
             </div>
+        </div>
+        <div class="header__logo">
+            <img src="icons/Logo.png" alt="">
         </div>
         <div class="header-container2">
             <div class="header-signup">
@@ -26,24 +27,32 @@
                     <img src="./icons/user.png" alt="">
                 </a>
             </div>
-            <button class="header-menu-open">
+            <button class="header-menu__open">
             </button>
         </div>
         <div class="header-menu">
-            <button class="header-menu-close">
+            <button class="header-menu__close">
             </button>
             <nav>
                 <ul>
-                    <li>Inicio</li>
-                    <li>Delivery</li>
-                    <li>Reservas</li>
-                    <li>Nosotros</li>
+                    <li><a href="">Inicio</a></li>
+                    <li><a href="">Delivery</a></li>
+                    <li><a href="">Reservas</a></li>
+                    <li><a href="">Nosotros</a></li>
                 </ul>
             </nav>
         </div>
     </header>
-    <main>
-
+    <main class="main-index">
+        <section class="main-index-title">
+            <h1>
+                Pollería San Antonio
+            </h1>
+            <p>
+                “Barriga llena corazón contento”
+            </p>
+            <img src="./images/presentation.jpg" alt="">
+        </section>
     </main>
 </body>
 </html>

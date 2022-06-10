@@ -48,7 +48,10 @@ header {
     display: flex;
     align-items: center;
 }
-.header__logo img, .header-signup img{
+.header__logo img{
+height: 50px;
+}
+.header-signup img{
     width: 40px;
 }
 /*Tamaño del shopcar*/
@@ -71,7 +74,7 @@ header {
     margin-bottom: 10px;
 }
 /*Tamaño del button open navigation*/
-.header-container2 .header-menu-open{
+.header-container2 .header-menu__open{
     height: 20px;
     width: 27px;
     border: none;
@@ -82,10 +85,92 @@ header {
     background-position: center;
     background-repeat: no-repeat;
 }
+.header-menu__close{
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    height: 43.75px;
+    width: 43.75px;
+    border: none;
+    cursor: pointer;
+    background: transparent;
+    background-image: url("../icons/menu__close.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
 .header-menu{
+    display: none;
     position: absolute;
     right: 0px;
     top: 0px;
     background: rgba(13, 13, 13, 0.75);
+    width: 100vw;
+    height: auto;
     backdrop-filter: blur(15px);
+
+}
+
+.header-menu nav{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+}
+.header-menu ul{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    list-style: none;
+}
+.header-menu ul li{
+    margin: 14px;
+}
+.header-menu ul a{
+    text-decoration: none;
+    color: var(--main-white);
+    font-size: 3.2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+.header-menu ul a:hover{
+    transition: all 0.5s;
+    font-size: 4.2rem;
+}
+.menu_opened {
+    display: block;
+    backdrop-filter: blur(15px);
+}
+.main-index {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+}
+.main-index .main-index-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+}
+.main-index .main-index-title h1{
+    margin-top: 25px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 2.4rem;
+}
+.main-index .main-index-title p{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 1.2rem;
+    line-height: 14px;
+    margin-bottom: 25px;
+}
+.main-index .main-index-title img{
+    width: 100vw;
+    max-width: 1200px;
 }
