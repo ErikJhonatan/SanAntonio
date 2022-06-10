@@ -1,3 +1,11 @@
+:root{
+    --main-color: #D98E04;
+    --main-orange: #D97904;
+    --main-brown: #A63F03;
+    --main-white: #F9F8F7;
+    --secunday-brown: #732002;
+    --main-black: #0D0D0D;
+}
 * {
     margin: 0;
     padding: 0;
@@ -6,72 +14,78 @@
 html {
     font-size: 62.5%;
 }
-.header {
-    width: 100%;
-    height: 60px;
-    color: #F9F8F7;
-    display: flex;
-    justify-content: space-between; 
-    align-items: center;
-    background: #0D0D0D;
-    box-shadow: 0px 2px 15px #D97904;
+body {
+    font-family: 'Roboto', sans-serif;
+    font-size: 2.4rem;
+    background: var(--main-black);
+    color: var(--main-white);
 }
-.header-container1, .header-container2{
+header {
+    height: 60px;
+    width: 100%;
+    background: var(--main-black);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0px 2px 15px var(--main-orange);
+}
+.header-container1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.header-container2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+/*Tamaño de los elementos*/
+.header-signup a{
     display: flex;
     align-items: center;
 }
 .header__logo {
-    margin-left: 20px;
+    display: flex;
+    align-items: center;
 }
-.header__logo img{
-    width: 50px;
-    height: 50px;
-}
-.header-navigationbar-open{
-    cursor: pointer;
-    width: 27px;
-    height: 27px;
-    background-image: url("../icons/open.png");
-    background-position: center;
-    background-size: contain;
-    background-repeat: no-repeat;
-    border: none;
-    background-color: transparent;
-    margin-right: 20px;
-}
-.header-navigationbar-close ul{
-    list-style: none;
-}
-.header-signup{
+.header__logo img, .header-signup img{
     width: 40px;
-    height: 40px;
-    margin-right: 10px;
 }
-.header-signup img{
-    width: 100%;
-    height: 100%;
-    
-}
+/*Tamaño del shopcar*/
 .header-shopcar{
+    font-size: 14px;
+    font-weight: 400;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 35px;
-    height: 35px;
-    margin-left: 10px;
-    background: url('../icons/shoppingCar.png');
-    background-position: center;
+    width: 40px;
+    height: 40px;
+    background-image: url("../icons/shopcar.png");
     background-size: cover;
+    background-position: center;
     background-repeat: no-repeat;
 }
+/*Posicionando el contador en elk shopcar*/
 .header-shopcar span{
-    margin-left: 5px;
-    margin-bottom: 8px;
+    margin-left: 7px;
+    margin-bottom: 10px;
 }
-.header-navigationbar {
-    display: none;
+/*Tamaño del button open navigation*/
+.header-container2 .header-menu-open{
+    height: 20px;
+    width: 27px;
+    border: none;
+    cursor: pointer;
+    background: transparent;
+    background-image: url("../icons/menu.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.header-menu{
     position: absolute;
-    justify-content: center;
-    top: 0px;
     right: 0px;
+    top: 0px;
+    background: rgba(13, 13, 13, 0.75);
+    backdrop-filter: blur(15px);
 }
