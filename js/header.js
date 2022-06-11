@@ -11,11 +11,14 @@ closeMenuBtn.addEventListener("click", toggleMenu);
 
 //header sticky
 const headerContainer = document.querySelector(".header-container");
-
+const container_scrolled= document.querySelector("main");
   window.addEventListener("scroll", function() {
     if (window.pageYOffset > 0) {
       headerContainer.classList.add("header-container_scrolled");
+      container_scrolled.classList.add("container_scrolled");
+      
     } else {
       headerContainer.classList.remove("header-container_scrolled");
+      container_scrolled.classList.remove("container_scrolled");
     }
   });
