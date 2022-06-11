@@ -19,20 +19,31 @@ body {
     font-size: 2.4rem;
     background: var(--main-black);
     color: var(--main-white);
+    position: relative;
 }
 header {
-    height: 60px;
+    height: auto;
     width: 100%;
+}
+.header-container{
+    height: 60px;
     background: var(--main-black);
     display: flex;
     justify-content: space-between;
     align-items: center;
     box-shadow: 0px 2px 15px var(--main-orange);
 }
+.header-container_scrolled{
+    width: 100%;
+    position: fixed;
+    background: rgba(13, 13, 13, 0.5);
+    backdrop-filter: blur(15px);
+}
 .header-container1 {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-left: 20px;
 }
 .header-container2 {
     display: flex;
@@ -43,6 +54,9 @@ header {
 .header-signup a{
     display: flex;
     align-items: center;
+}
+.header-signup{
+    margin-right: 7px;
 }
 .header__logo {
     display: flex;
@@ -67,14 +81,16 @@ height: 50px;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    margin-left: 7px;
 }
-/*Posicionando el contador en elk shopcar*/
+/*Posicionando el contador en el shopcar*/
 .header-shopcar span{
     margin-left: 7px;
     margin-bottom: 10px;
 }
 /*Tamaño del button open navigation*/
 .header-container2 .header-menu__open{
+    margin-right: 20px;
     height: 20px;
     width: 27px;
     border: none;
@@ -108,7 +124,6 @@ height: 50px;
     width: 100vw;
     height: auto;
     backdrop-filter: blur(15px);
-
 }
 
 .header-menu nav{
@@ -137,7 +152,9 @@ height: 50px;
     transition: all 0.5s;
     font-size: 4.2rem;
 }
+
 .menu_opened {
+    position: fixed;
     display: block;
     backdrop-filter: blur(15px);
 }
@@ -146,7 +163,6 @@ height: 50px;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: auto;
 }
 .main-index .main-index-title {
     display: flex;
@@ -160,17 +176,60 @@ height: 50px;
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 700;
-    font-size: 2.4rem;
+    font-size: 2.8rem;
+    margin-bottom: 7px;
 }
 .main-index .main-index-title p{
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 300;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     line-height: 14px;
     margin-bottom: 25px;
 }
 .main-index .main-index-title img{
     width: 100vw;
-    max-width: 1200px;
+    max-width: 800px;
+}
+.main-index .main-index-carta h2{
+    text-align: center;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 2.8rem;
+    color: var(--main-color);
+}
+.main-index-carta-container{
+    margin-left: 20px;
+    margin-right: 20px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.main-index-carta-container__item{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.main-index-carta-container__item img{
+    margin: 7px;
+    width: 100%;
+    max-width: 320px;
+    box-shadow: #000000 0px 0px 10px;
+}
+.main-index-carta-container__item span{
+    font-style: normal;
+    font-weight: 700;
+    font-size: 1.8rem;
+    text-align: center;
+}
+.main-index-carta-container__item img:hover{
+    transition: all 0.5s;
+    transform: scale(1.3);
+}
+.main-index-carta-container__item img:active{
+    transition: all 0.5s;
+    transform: scale(0.7);
 }
