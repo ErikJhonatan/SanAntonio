@@ -21,4 +21,4 @@ const container_scrolled= document.querySelector("main");
       headerContainer.classList.remove("header-container_scrolled");
       container_scrolled.classList.remove("container_scrolled");
     }
-  });
+  })
