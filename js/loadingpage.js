@@ -4,4 +4,4 @@ window.onload = setTimeout(function loadingPage() {
     body.style.overflow="visible";
     const loadingContainer = document.querySelector(".contenedor_loader");
     loadingContainer.style.display="none";
-}, 2000);
+}, 1000);
