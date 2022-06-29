@@ -284,6 +284,7 @@ height: 50px;
     width: 100%;
     max-width: 320px;
     box-shadow: #000000 0px 0px 10px;
+    cursor: pointer;
 }
 .main-index-carta-container__item span{
     font-style: normal;
@@ -302,7 +303,9 @@ height: 50px;
 /*
 Modificando el footer
 */
+
 footer .footer-main{
+    
     width: 100%;
     margin-top: 25px;
     background: var(--main-black);
@@ -468,4 +471,41 @@ footer .footer-main__social span{
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+}
+.parrilla, .brasa, .fast-food, .soup, .beverages{
+    display: none;
+}
+.parrilla_opened, .brasa_opened, .fast-food_opened, .soup_opened, .beverages_opened{
+    display: flex;
+    justify-content: center;
+    align-items: center;     
+}
+.parrilla_carta-container, .brasa_carta-container, .fast-food_carta-container, .soup_carta-container, .beverages_carta-container{
+    top: 60px;
+    z-index: 4;
+    position: fixed;
+    width: 90vw;
+    height: 100vh;
+    background: #F9F8F7;
+    border-radius: 15px;
+}
+.parrilla_carta-container h2, .brasa_carta-container h2, .fast-food_carta-container h2, .soup_carta-container h2, .beverages_carta-container h2{
+    margin-top: 40px;
+    text-align: center;
+    font-size: 3.6rem;
+    color: var(--main-orange);
+}
+.parrilla__close, .brasa__close, .fast-food__close, .soup__close, .beverages__close{
+    position: absolute;
+    top: 10px;
+    right: 25px;
+    width: 45px;
+    height: 45px;
+    background-color: transparent;
+    cursor: pointer;
+    background-image: url('../icons/menu__close.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+
 }
