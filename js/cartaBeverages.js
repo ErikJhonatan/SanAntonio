@@ -7,3 +7,4 @@ function toggleBeverages() {
 }
     btnBeverages.addEventListener('click', toggleBeverages);
     btnBeveragesClose.addEventListener('click', toggleBeverages);
+    
