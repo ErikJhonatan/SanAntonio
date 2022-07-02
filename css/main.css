@@ -10,6 +10,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 html {
     font-size: 62.5%;
@@ -472,33 +473,37 @@ footer .footer-main__social span{
     background-repeat: no-repeat;
     background-position: center;
 }
-.parrilla, .brasa, .fast-food, .soup, .beverages{
-    display: none;
+.parrilla, .brasa, .salad, .fast-food, .soup, .beverages{
+  display: none;
 }
-.parrilla_opened, .brasa_opened, .fast-food_opened, .soup_opened, .beverages_opened{
+.parrilla_opened, .brasa_opened, .salad_opened, .fast-food_opened, .soup_opened, .beverages_opened{
+    position: relative;
     display: flex;
     justify-content: center;
-    align-items: center;     
+    align-items: center;
+    flex-direction: column;
+    
 }
-.parrilla_carta-container, .brasa_carta-container, .fast-food_carta-container, .soup_carta-container, .beverages_carta-container{
+.parrilla_carta-container, .brasa_carta-container, .salad_carta-container, .fast-food_carta-container, .soup_carta-container, .beverages_carta-container{
     top: 60px;
     z-index: 4;
     position: fixed;
     width: 90vw;
-    height: 100vh;
+    height: 90vh;
     background: #F9F8F7;
     border-radius: 15px;
+    overflow-y: scroll;
 }
-.parrilla_carta-container h2, .brasa_carta-container h2, .fast-food_carta-container h2, .soup_carta-container h2, .beverages_carta-container h2{
+.parrilla_carta-container h2, .brasa_carta-container h2, .salad_carta-container h2, .fast-food_carta-container h2, .soup_carta-container h2, .beverages_carta-container h2{
     margin-top: 40px;
     text-align: center;
     font-size: 3.6rem;
     color: var(--main-orange);
 }
-.parrilla__close, .brasa__close, .fast-food__close, .soup__close, .beverages__close{
+.parrilla__close, .brasa__close, .salad__close, .fast-food__close, .soup__close, .beverages__close{
     position: absolute;
     top: 10px;
-    right: 25px;
+    right: 10px;
     width: 45px;
     height: 45px;
     background-color: transparent;
@@ -507,5 +512,104 @@ footer .footer-main__social span{
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+}
+/* contenedor div con 2 columnas */
+.parrilla_food-container, .brasa_food-container, .salad_food-container, .fast-food_food-container, .soup_food-container, .beverages_food-container{
+    width: 100%;
+    max-width: 700px;
+    padding-left: 20px;
+    padding-right: 20px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+    margin-top: 15px;
+}
+.parrilla_food, .brasa_food, .salad_food, .fast-food_food, .soup_food, .beverages_food{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.parrilla-item__name, .brasa-item__name, .salad-item__name, .fast-food-item__name, .soup-item__name, .beverages-item__name{
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 2.4rem;
+    line-height: 1px;
+    text-align: center;
+    color: var(--main-orange);
+}
+.parrilla-item__details, .brasa-item__details, .salad-item__details, .fast-food-item__details, .soup-item__details, .beverages-item__details{
+    color: var(--main-black);
+    width: 100%;
+    max-width: 320px;
+    font-size: 1.6rem;
+    font-weight: 300;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
 
+.parrilla-item__img, .brasa-item__img, .salad-item__img, .fast-food-item__img, .soup-item__img, .beverages-item__img{
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.parrilla-item__img img, .brasa-item__img img, .salad-item__img img, .fast-food-item__img img, .soup-item__img img, .beverages-item__img img{
+    width: 100%;
+    height: auto;
+}
+.parrilla-item__description, .brasa-item__description, .salad-item__description, .fast-food-item__description, .soup-item__description, .beverages-item__description{
+    margin-top: 10px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 1.6rem;
+    max-width: 320px;
+    color: var(--main-black);
+}
+.parrilla-item__price, .brasa-item__price, .salad-item__price, .fast-food-item__price, .soup-item__price, .beverages-item__price{
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 2.0rem;
+    line-height: 1px;
+    color: var(--main-orange);
+}
+.btn-addProduct-parrilla, .btn-addProduct-brasa, .btn-addProduct-salad, .btn-addProduct-fast-food, .btn-addProduct-soup, .btn-addProduct-beverages{
+    background-color: var(--main-brown);
+    color: var(--main-white);
+    padding: 10px;
+    min-width: 100px;
+    width: 50%;
+    height: auto;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: hsla(0, 0%, 0%, 0.267) 0px 0px 10px 0px;
+}
+.btn-addProduct-parrilla:hover, .btn-addProduct-brasa:hover, .btn-addProduct-salad:hover, .btn-addProduct-fast-food:hover, .btn-addProduct-soup:hover, .btn-addProduct-beverages:hover{
+    background-color: var(--main-orange);
+    color: var(--main-white);
+    transform: scale(1.025);
+    transition: all 0.25s;
+}
+.btn-addProduct-parrilla:active, .btn-addProduct-brasa:active, .btn-addProduct-salad:active, .btn-addProduct-fast-food:active, .btn-addProduct-soup:active, .btn-addProduct-beverages:active{
+    background-color: var(--main-brown);
+    color: var(--main-white);
+    transform: scale(0.975);
+    transition: all 0.25s;
+}
+/*div que tenga 2 columnas de ancho*/
+.parrilla-item_combo, .brasa-item_combo, .salad-item_combo, .fast-food-item_combo, .soup-item_combo, .beverages-item_combo{
+    width: 2fr;
 }
