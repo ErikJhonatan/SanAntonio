@@ -18,6 +18,55 @@
     <div class="contenedor_loader">
         <div class="loader"></div>
     </div>
+    <!-- Carrito de compras -->
+    <div class="shoppingCart">
+        <div class="shoppingCart-container">
+            <div class="shoppingCart_close"></div>
+            <img src="./icons/shopcar.png" alt="icono de shopcar">
+            <h2>
+                Tu carrito de compras esta vacio
+            </h2>
+            <p>
+                Para poder utilizar el carrito agregue los productos que quiere comprar
+            </p>
+        </div>
+        <div class="shoppingCart__item">
+            <div class="cart-item__img">
+                <img src="./images/polloBrasa.jpg" alt="">
+            </div>
+            <div class="cart-item__description">
+                <h3> Pollo a la brasa</h3>
+                <p> Precio: S/. 50.00</p>
+                <p> 1/4 de Pollo a la brasa</p>
+                <div class="cart-item__count">
+                    <p>Cantidad:</p>
+                    <div class="cart-item__count-container">
+                        <div class="cart-item__count-minus">
+                            <img src="./icons/minus.png" alt="">
+                        </div>
+                        <div class="cart-item__count-number">
+                            <p>1</p>
+                        </div>
+                        <div class="cart-item__count-plus">
+                            <img src="./icons/plus.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="shoppingCart-details">
+            <div>
+                <p>Total a pagar:</p><p id="#shoppingtotalPay">S/. 0.00</p>
+            </div>
+            <div>
+                <p>Cantidad de productos:</p><p id="totalProducts">0</p>	
+            </div>
+            <button class="shoppinCart-pay">
+                Ir a pagar
+            </button>
+        </div>
+
+    </div>
     <!-- Parrilla -->
     <div class="parrilla"> 
         <div class="parrilla_carta-container">
@@ -48,7 +97,7 @@
                                 <img src="./images/2parrilla.png" alt="Carnes a la parrilla">
                             </div>
                             <p class="parrilla-item__description">2 porciones de carne a la parrilla</p>
-                            <p class="parrilla-item__price">S/.60.00</p>
+                            <p class="parrilla-item__price">S/. 60.00</p>
                             <button class="btn-addProduct-parrilla">
                                 Agregar al carrito
                             </button>
@@ -88,15 +137,76 @@
                                     <img src="./images/presentation.jpg"">
                                 </div>
                                 <p class="brasa-item__description">
-                                    1 Pollo a la brasa con papas y ensalada y cremas
+                                    1 Pollo a la brasa con papas, ensalada y cremas
                                 </p>
-                                <p class="brasa-item__price">S/.50.00</p>
+                                <p class="brasa-item__price">S/. 55.00</p>
                                 <button class="btn-addProduct-brasa">
                                     Agregar al carrito
                                 </button>
                             </div>
                         </div>
+                        <div class="brasa-item">
+                            <div class="brasa-item__details">
+                                <h3 class="brasa-item__name">Pollo a la brasa + gaseosa</h3>
+                                <div class="brasa-item__img">
+                                    <img src="./images/pollo+gaseosa.png" alt="pollo a la brasa + gaseosa">
+                                </div>
+                                <p class="brasa-item__description">
+                                    1 Pollo a la brasa con papas, gaseosa y cremas
+                                </p>
+                                <p class="brasa-item__price">S/. 60.00</p>
+                                <button class="btn-addProduct-brasa">
+                                    Agregar al carrito
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="brasa-item">
+                            <div class="brasa-item__details">
+                                <h3 class="brasa-item__name"> 1/2 de Pollo a la brasa</h3>
+                                <div class="brasa-item__img">
+                                    <img src="./images/medioPollo.png"">
+                                </div>
+                                <p class="brasa-item__description">
+                                    1/2 de Pollo a la brasa con porción de papas y cremas
+                                </p>
+                                <p class="brasa-item__price">S/. 31.00</p>
+                                <button class="btn-addProduct-brasa">
+                                    Agregar al carrito
+                                </button>
+                            </div>
+                        </div>
+                        <div class="brasa-item">
+                            <div class="brasa-item__details">
+                                <h3 class="brasa-item__name">1/4 de Pollo a la brasa</h3>
+                                <div class="brasa-item__img">
+                                    <img src="./images/pollo+gaseosa.png" alt="pollo a la brasa + gaseosa">
+                                </div>
+                                <p class="brasa-item__description">
+                                    1/4 de Pollo a la brasa con papas, gaseosa y cremas
+                                </p>
+                                <p class="brasa-item__price">S/. 17.00</p>
+                                <button class="btn-addProduct-brasa">
+                                    Agregar al carrito
+                                </button>
+                            </div>
                     </div>
+                </div>
+            <div class="brasa-item_combo">
+                    <div class="brasa-item__details">
+                        <h3 class="brasa-item__name">Combo Familia</h3>
+                        <div class="brasa-item__img">
+                            <img src="./images/comboBrasa.png" alt="">
+                        </div>
+                        <p class="brasa-item__description">
+                            1 Pollo a la brasa + 1/2 pollo  con 2 porciones de papas ,gaseosa y ensalada
+                        </p>
+                        <p class="brasa-item__price">S/. 120.00</p>
+                        <button class="btn-addProduct-brasa">
+                            Agregar al carrito
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
         </div>
@@ -106,15 +216,72 @@
                 <div class="salad__close">
                 </div>
                 <h2>Ensaladas</h2>
-                <div class="salad_food-container">
-                    <img src="" alt="">
-                    <p class="">
-                    </p>
-                    <p class="">
-                    </p>
+                <div class="salad_food">
+                    <div class="salad_food-container">
+                        <div class="salad-item">
+                            <div class="salad-item__details">
+                                <h3 class="salad-item__name">Ensalada clasica</h3>
+                                <div class="salad-item__img">
+                                    <img src="./images/ENSALADA1.jpg" alt="Ensalada clasica">
+                                </div>
+                                <p class="salad-item__description">
+                                    La ración de ensalada contiene tomate, pepinillos, cebolla y lechuga
+                                </p>
+                                <p class="salad-item__price">S/. 12.50</p>
+                                <button class="btn-addProduct-salad">
+                                    Agregar al carrito
+                                </button>
+                            </div>
+                        </div>
+                        <div class="salad-item">
+                            <div class="salad-item__details">
+                                <h3 class="salad-item__name">Ensalada especial</h3>
+                                <div class="salad-item__img">
+                                    <img src="./images/ENSALADA2.jpg" alt="Ensalada especial">
+                                </div>
+                                <p class="salad-item__description">
+                                    La ración de ensalada contiene tomate, pepinillos, cebolla, lechuga y aji
+                                </p>
+                                <p class="salad-item__price">S/. 14.00</p>
+                                <button class="btn-addProduct-salad">
+                                    Agregar al carrito
+                                </button>
+                            </div>
+                        </div>
+                        <div class="salad-item">
+                            <div class="salad-item__details">
+                                <h3 class="salad-item__name">Ensalada a lo pobre</h3>
+                                <div class="salad-item__img">
+                                    <img src="./images/ENSALADA3.jpg" alt="Ensalada a lo pobre">
+                                </div>
+                                <p class="salad-item__description">
+                                    La ración de ensalada tomate ,pepinillos ,lechuga con hongos especial
+                                </p>
+                                <p class="salad-item__price">S/. 10.00</p>
+                                <button class="btn-addProduct-salad">
+                                    Agregar al carrito
+                                </button>
+                            </div>
+                        </div>
+                        <div class="salad-item">
+                            <div class="salad-item__details">
+                                <h3 class="salad-item__name">Ensalada de la casa</h3>
+                                <div class="salad-item__img">
+                                    <img src="./images/ENSALADA4.webp" alt="Ensalada de la casa">
+                                </div>
+                                <p class="salad-item__description">
+                                    La ración de la ensalada contiene tomate, lechuga con aros de cebolla y brocoli del olimpo
+                                </p>
+                                <p class="salad-item__price">S/. 20.00</p>
+                                <button class="btn-addProduct-salad">
+                                    Agregar al carrito
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            </div>
+        </div>
         <!-- fast-food carta -->
         <div class="fast-food"> 
             <div class="fast-food_carta-container">
@@ -123,15 +290,57 @@
                 <h2>
                     Comida rapida
                 </h2>
-                <div class="fast-food_food-container">
-                    <img src="" alt="">
-                    <p class="">
-                    </p>
-                    <p class="">
-                    </p>
+                <div class="fast-food_food">
+                    <div class="fast-food_food-container">
+                        <div class="fast-food-item">
+                            <div class="fast-food-item__details">
+                                <h3 class="fast-food-item__name">Hamburguesas</h3>
+                                <div class="fast-food-item__img">
+                                    <img src="./images/hamburguesa.jpg" alt="">
+                                </div>
+                                <p class="fast-food-item__description">
+                                   2 hamburguesa de cebolla y doble carne, con 1 porción de papas fritas
+                                </p>
+                                <p class="fast-food-item__price">S/. 20.00</p>
+                                <button class="btn-addProduct-fast-food">
+                                    Agregar al carrito
+                                </button>
+                            </div>
+                        </div>
+                        <div class="fast-food-item">
+                            <div class="fast-food-item__details">
+                                <h3 class="fast-food-item__name">Salchipapa</h3>
+                                <div class="fast-food-item__img">
+                                    <img src="./images/salchipapa.jpg"alt="Salchipapa">
+                                </div>
+                                <p class="fast-food-item__description">
+                                    Rodajas fritas de salchicha y papas fritas
+                                </p>
+                                <p class="fast-food-item__price">S/. 7.50</p>
+                                <button class="btn-addProduct-fast-food">
+                                    Agregar al carrito
+                                </button>
+                            </div>
+                        </div>
+                        <div class="fast-food-item">
+                            <div class="fast-food-item__details">
+                                <h3 class="fast-food-item__name">Pollo frito</h3>
+                                <div class="fast-food-item__img">
+                                    <img src="./images/pollo-frito.jpeg" alt="Pollos fritos">
+                                </div>
+                                <p class="fast-food-item__description">
+                                    1/4 de pollo frito con 1 porción de papas fritas
+                                </p>
+                                <p class="fast-food-item__price">S/. 15.50</p>
+                                <button class="btn-addProduct-fast-food">
+                                    Agregar al carrito
+                                </button>
+                        </div>
+                    </div>
+                </div>
                 </div>
             </div>
-            </div>
+        </div>
             <!-- soup carta-->
             <div class="soup"> 
                 <div class="soup_carta-container">
@@ -140,15 +349,63 @@
                     <h2>
                         Caldos
                     </h2>
-                    <div class="soup_food-container">
-                        <img src="" alt="">
-                        <p class="">
-                        </p>
-                        <p class="">
-                        </p>
-                    </div>
+                    <div class="soup_food">
+                        <div class="soup_food-container">
+                            <div class="soup-item">
+                                <div class="soup-item__details">
+                                    <h3 class="soup-item__name">
+                                        Aguadito de pollo
+                                    </h3>
+                                    <div class="soup-item__img">
+                                        <img src="./images/aguadito-pollo.jpg" alt="aguadito de pollo">
+                                    </div>
+                                    <p class="soup-item__description">
+                                        1 porción de Aguadito de pollo
+                                    </p>
+                                    <p class="soup-item__price">S/. 9.00</p>
+                                    <button class="btn-addProduct-soup">
+                                        Agregar al carrito
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="soup-item">
+                                <div class="soup-item__details">
+                                    <h3 class="soup-item__name">
+                                        Caldo de gallina
+                                    </h3>
+                                    <div class="soup-item__img">
+                                        <img src="./images/caldoGallina.jpg" alt="Caldo de gallina">
+                                    </div>
+                                    <p class="soup-item__description">
+                                        1 porción de Caldo de gallina
+                                    </p>
+                                    <p class="soup-item__price">S/. 12.00</p>
+                                    <button class="btn-addProduct-soup">
+                                        Agregar al carrito
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="soup-item">
+                                <div class="soup-item__details">
+                                    <h3 class="soup-item__name">
+                                        Sopa de pollo
+                                    </h3>
+                                    <div class="soup-item__img">
+                                        <img src="./images/sopa-pollo.jpg" alt="Sopa de pollo">
+                                    </div>
+                                    <p class="soup-item__description">
+                                        Sopa de pollo con verduras
+                                    </p>
+                                    <p class="soup-item__price">S/. 10.00</p>
+                                    <button class="btn-addProduct-soup">
+                                        Agregar al carrito
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>       
                 </div>
-                </div>
+            </div>
                <!-- beverages carta-->
                <div class="beverages">
                 <div class="beverages_carta-container">
@@ -157,15 +414,80 @@
                     <h2>
                         Bebidas
                     </h2>
-                    <div class="beverages_food-container">
-                        <img src="" alt="">
-                        <p class="">
-                        </p>
-                        <p class="">
-                        </p>
-                    </div>
+                    <div class="beverages_food">
+                        <div class="beverages_food-container">
+                            <div class="beverages-item">
+                                <div class="beverages-item__details">
+                                    <h3 class="beverages-item__name">
+                                        Jugo
+                                    </h3>
+                                    <div class="beverages-item__img">
+                                        <img src="./images/jugo-naranja-fresa.png" alt="Jugo de naranja y fresa">
+                                    </div>
+                                    <p class="beverages-item__description">
+                                        1 jarra de jugo de naranja y fresa con gas
+                                    </p>
+                                    <p class="beverages-item__price">S/. 15.00</p>
+                                    <button class="btn-addProduct-beverages">
+                                        Agregar al carrito
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="beverages-item">
+                                <div class="beverages-item__details">
+                                    <h3 class="beverages-item__name">
+                                        Limonada
+                                    </h3>
+                                    <div class="beverages-item__img">
+                                        <img src="./images/limonada.jpg" alt="Limonada del rio amazonas">
+                                    </div>
+                                    <p class="beverages-item__description">
+                                        1 jarra de limonada del rio Amazonas
+                                    </p>
+                                    <p class="beverages-item__price">S/. 12.50</p>
+                                    <button class="btn-addProduct-beverages">
+                                        Agregar al carrito
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="beverages-item">
+                                <div class="beverages-item__details">
+                                    <h3 class="beverages-item__name">
+                                        Bebida alcohólica
+                                    </h3>
+                                    <div class="beverages-item__img">
+                                        <img src="./images/bebida-alcoholica.png" alt="bebida alcohólica">
+                                    </div>
+                                    <p class="beverages-item__description">
+                                        1 bebida alcohólica (La elección es al azar)
+                                    </p>
+                                    <p class="beverages-item__price">S/. 28.00</p>
+                                    <button class="btn-addProduct-beverages">
+                                        Agregar al carrito
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="beverages-item">
+                                <div class="beverages-item__details">
+                                    <h3 class="beverages-item__name">
+                                        Gaseosa
+                                    </h3>
+                                    <div class="beverages-item__img">
+                                        <img src="./images/gaseosa.png" alt="gaseosa">
+                                    </div>
+                                    <p class="beverages-item__description">
+                                        1 Gaseosa (La elección es al azar)
+                                    </p>
+                                    <p class="beverages-item__price">S/. 5.00</p>
+                                    <button class="btn-addProduct-beverages">
+                                        Agregar al carrito
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>        
                 </div>
-                </div>
+            </div>
                
     <header class="header">
         <div class="header-container">
@@ -341,5 +663,6 @@
     <script src="./js/cartaFastFood.js"></script>
     <script src="./js/cartaSoup.js"></script>
     <script src="./js/cartaBeverages.js"></script>
+    <script src="./js/shopCart.js"></script>
 </body>
 </html>
