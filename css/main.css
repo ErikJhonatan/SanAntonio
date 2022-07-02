@@ -537,7 +537,6 @@ footer .footer-main__social span{
     font-style: normal;
     font-weight: 700;
     font-size: 2.4rem;
-    line-height: 1px;
     text-align: center;
     color: var(--main-orange);
 }
