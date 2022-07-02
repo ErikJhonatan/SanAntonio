@@ -26,15 +26,51 @@
             <h2>
                 Carnes a la parrilla
             </h2>
-            <div class="parrilla_food-container">
-                <img src="" alt="">
-                <p class="">
-                </p>
-                <p class="">
-                </p>
+            <div class="parrilla_food">
+                <div class="parrilla_food-container">
+                    <div class="parrilla-item">
+                        <div class="parrilla-item__details">
+                            <h3 class="parrilla-item__name">Bistec</h3>
+                            <div class="parrilla-item__img">
+                                <img src="./images/bistek.png" alt="">
+                            </div>
+                            <p class="parrilla-item__description">Porción de bistec a la parrilla con papas al vapor y cremas de la casa</p>
+                            <p class="parrilla-item__price">S/.50.00</p>
+                            <button class="btn-addProduct-parrilla">
+                                Agregar al carrito
+                            </button>
+                        </div>
+                    </div>
+                    <div class="parrilla-item">
+                        <div class="parrilla-item__details">
+                            <h3 class="parrilla-item__name">Carne a la parrilla</h3>
+                            <div class="parrilla-item__img">
+                                <img src="./images/2parrilla.png" alt="Carnes a la parrilla">
+                            </div>
+                            <p class="parrilla-item__description">2 porciones de carne a la parrilla</p>
+                            <p class="parrilla-item__price">S/.60.00</p>
+                            <button class="btn-addProduct-parrilla">
+                                Agregar al carrito
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="parrilla-item_combo">
+                    <div class="parrilla-item__details">
+                        <h3 class="parrilla-item__name">Combo Familia</h3>
+                        <div class="parrilla-item__img">
+                            <img src="./images/comboParrilla.png" alt="">
+                        </div>
+                        <p class="parrilla-item__description">Porción de bistec a la parrilla con papas al vapor y cremas de la casa</p>
+                        <p class="parrilla-item__price">S/.50.00</p>
+                        <button class="btn-addProduct-parrilla">
+                            Agregar al carrito
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
-        </div>
+    </div>
         <!-- Pollos a la brasa carta -->          
         <div class="brasa"> 
             <div class="brasa_carta-container">
@@ -43,7 +79,34 @@
                 <h2>
                     Pollos a la brasa
                 </h2>
-                <div class="brasa_food-container">
+                <div class="brasa_food">
+                    <div class="brasa_food-container">
+                        <div class="brasa-item">
+                            <div class="brasa-item__details">
+                                <h3 class="brasa-item__name">Pollo a la brasa</h3>
+                                <div class="brasa-item__img">
+                                    <img src="./images/presentation.jpg"">
+                                </div>
+                                <p class="brasa-item__description">
+                                    1 Pollo a la brasa con papas y ensalada y cremas
+                                </p>
+                                <p class="brasa-item__price">S/.50.00</p>
+                                <button class="btn-addProduct-brasa">
+                                    Agregar al carrito
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+        </div>
+        <!-- salad carta-->
+        <div class="salad"> 
+            <div class="salad_carta-container">
+                <div class="salad__close">
+                </div>
+                <h2>Ensaladas</h2>
+                <div class="salad_food-container">
                     <img src="" alt="">
                     <p class="">
                     </p>
@@ -51,7 +114,7 @@
                     </p>
                 </div>
             </div>
-        </div>
+            </div>
         <!-- fast-food carta -->
         <div class="fast-food"> 
             <div class="fast-food_carta-container">
@@ -168,7 +231,7 @@
                 </span>
             </div>
             <div class="main-index-carta-container__item">
-               <img src="./images/Ensalada.jpg" alt="Ensaladas">
+               <img class="btn-salad" src="./images/Ensalada.jpg" alt="Ensaladas">
                 <span>
                     Ensaladas
                 </span>
@@ -274,6 +337,7 @@
     </footer>
     <script src="./js/cartaParrilla.js"></script>
     <script src="./js/cartaBrasa.js"></script>
+    <script src="./js/cartaSalad.js"></script>
     <script src="./js/cartaFastFood.js"></script>
     <script src="./js/cartaSoup.js"></script>
     <script src="./js/cartaBeverages.js"></script>
