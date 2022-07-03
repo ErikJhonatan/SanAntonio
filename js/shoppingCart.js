@@ -2,8 +2,22 @@ class ShoppingCart{
     constructor(products = []){
         this.products = products;
     }
-    addProduct(product){
-        this.products.push(product);
+    //Eliminar proudcto por index
+    removeProductByIndex(index){
+        this.products.splice(index, 1);
+    }
+    //Metodo que no permite agregar un producto si ya existe por descripcion
+    addProductArray(product){
+        let existe = false;
+        for(let i = 0; i < this.products.length; i++){
+            if(this.products[i].getNameFood() === product.getNameFood()){
+                existe = true;
+            }
+        }
+        if(!existe){
+            this.products.push(product);
+            return true;
+        }
     }
     removeProduct(product){
         this.products.splice(this.products.indexOf(product), 1);
@@ -18,8 +32,13 @@ class ShoppingCart{
     toString(){
         return this.products.map(product => product.toString()).join("\n");
     }
+    //Total de contenido del carrito
     totalProducts(){
-        return this.products.length;
+        let total = 0;
+        for(let i = 0; i < this.products.length; i++){
+            total += this.products[i].getAmount();
+        }
+        return total;
     }
     //getters
     getProducts(){
