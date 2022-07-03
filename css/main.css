@@ -370,6 +370,7 @@ footer .footer-main__social span{
     justify-content: space-around;
 }
 .footer-contact-us div {
+    margin-top: 10px;
     text-align: center;
 }
 .footer-contact-us div span{
@@ -380,6 +381,7 @@ footer .footer-main__social span{
     line-height: 1px;
 }
 .footer-contact-us div a, .footer-contact-us div p{
+    margin-top: 10px;
     text-decoration: none;
     color: var(--main-white);
     font-family: 'Roboto';
@@ -724,6 +726,7 @@ footer .footer-main__social span{
     width: 150px;
 }
 .cart-item__description h3{
+    width: 100px;
     font-size: 1.8rem;
 }
 .cart-item__description p{
