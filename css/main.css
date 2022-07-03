@@ -633,10 +633,10 @@ footer .footer-main__social span{
     z-index: 5;
 }
 .cart_opened{
-    
+    border: #D97904 1.5px solid;
     height: 85vh;
     opacity: 1;
-    top: 70px;
+    top: 65px;
     transition: all 1s;
     overflow-y: auto;
     z-index: 9;
@@ -726,7 +726,8 @@ footer .footer-main__social span{
     width: 150px;
 }
 .cart-item__description h3{
-    width: 100px;
+    width: auto;
+    max-width: 100px;
     font-size: 1.8rem;
 }
 .cart-item__description p{
