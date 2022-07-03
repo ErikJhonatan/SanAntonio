@@ -617,25 +617,30 @@ footer .footer-main__social span{
     transition: all 0.25s;
 }
 .shoppingCart {
+    padding-top: 60px;
+    opacity: 0;
     position: fixed;
     border-radius: 5px;
     top: -1000px;
     background: rgba(13, 13, 13, 0.75);
     width: 50vw;
     min-width: 320px;
-    height: 85vh;
+    height: auto;
     backdrop-filter: blur(15px);
     transition: all 1s;
-    
+    z-index: 5;
 }
 .cart_opened{
+    
+    height: 85vh;
+    opacity: 1;
     top: 70px;
     transition: all 1s;
     overflow-y: auto;
     z-index: 9;
 }
-.shoppingCart-container{
-    margin-top: 35px;
+.shoppingCart-container__empty{
+    margin-top: 15px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -693,7 +698,7 @@ footer .footer-main__social span{
     margin-bottom: 20px;
 }
 .shoppingCart_close{
-    top: 10px;
+    top: 20px;
     position: absolute;
     right: 20px;
     height: 43.75px;
@@ -717,4 +722,51 @@ footer .footer-main__social span{
 }
 .cart-item__img img{
     width: 150px;
+}
+.cart-item__description h3{
+    font-size: 1.8rem;
+}
+.cart-item__description p{
+    width: 110px;
+    margin-left: 0px;
+    margin-right: 0px;
+    font-size: 1.2rem;
+    text-align: justify;
+}
+.cart-item__count-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+.cart-item__count h3{
+    font-size: 1.4rem;
+}
+.cart-item__count-minus img, .cart-item__count-plus img{
+    cursor: pointer;
+    width: 20px;
+    height: auto;
+}
+.cart-item__count-minus img:hover, .cart-item__count-plus img:hover{
+    transform: scale(1.15);
+    transition: all 0.5s;
+}
+.cart-item__count-minus img:active, .cart-item__count-plus img:active{
+    transform: scale(0.85);
+    transition: all 0.5s;
+}
+#count-cart{
+    margin-top: 0;
+    width: auto;
+}
+.item_delete{
+    position: relative;
+    background-image: url("../icons/delete_item.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    width: 18px;
+    height: 18px;
+    margin-left: 10px;
 }

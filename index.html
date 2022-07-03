@@ -12,8 +12,8 @@
     <link rel="shortcut icon" href="./icons/Logo.png" type="image/x-icon">
     <script defer src="./js/header.js"></script>
     <script src="./js/loadingpage.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
-<body>
     <!-- contenedor de carga -->
     <div class="contenedor_loader">
         <div class="loader"></div>
@@ -22,38 +22,17 @@
     <div class="shoppingCart">
         <div class="shoppingCart-container">
             <div class="shoppingCart_close"></div>
-            <img src="./icons/shopcar.png" alt="icono de shopcar">
-            <h2>
-                Tu carrito de compras esta vacio
-            </h2>
-            <p>
-                Para poder utilizar el carrito agregue los productos que quiere comprar
-            </p>
-        </div>
-        <div class="shoppingCart__item">
-            <div class="cart-item__img">
-                <img src="./images/polloBrasa.jpg" alt="">
-            </div>
-            <div class="cart-item__description">
-                <h3> Pollo a la brasa</h3>
-                <p> Precio: S/. 50.00</p>
-                <p> 1/4 de Pollo a la brasa</p>
-                <div class="cart-item__count">
-                    <p>Cantidad:</p>
-                    <div class="cart-item__count-container">
-                        <div class="cart-item__count-minus">
-                            <img src="./icons/minus.png" alt="">
-                        </div>
-                        <div class="cart-item__count-number">
-                            <p>1</p>
-                        </div>
-                        <div class="cart-item__count-plus">
-                            <img src="./icons/plus.png" alt="">
-                        </div>
-                    </div>
-                </div>
+            <div class="shoppingCart-container__empty">
+                <img src="./icons/shopcar.png" alt="icono de shopcar">
+                <h2>
+                    Tu carrito de compras esta vacio
+                </h2>
+                <p>
+                    Para poder utilizar el carrito agregue los productos que quiere comprar
+                </p>
             </div>
         </div>
+        
         <div class="shoppingCart-details">
             <div>
                 <p>Total a pagar:</p><p id="#shoppingtotalPay">S/. 0.00</p>
@@ -84,7 +63,7 @@
                                 <img src="./images/bistek.png" alt="">
                             </div>
                             <p class="parrilla-item__description">Porción de bistec a la parrilla con papas al vapor y cremas de la casa</p>
-                            <p class="parrilla-item__price">S/.50.00</p>
+                            <p class="parrilla-item__price">S/. 50.00</p>
                             <button class="btn-addProduct-parrilla">
                                 Agregar al carrito
                             </button>
@@ -111,7 +90,7 @@
                             <img src="./images/comboParrilla.png" alt="">
                         </div>
                         <p class="parrilla-item__description">Porción de bistec a la parrilla con papas al vapor y cremas de la casa</p>
-                        <p class="parrilla-item__price">S/.50.00</p>
+                        <p class="parrilla-item__price">S/. 80.00</p>
                         <button class="btn-addProduct-parrilla">
                             Agregar al carrito
                         </button>
@@ -180,10 +159,10 @@
                             <div class="brasa-item__details">
                                 <h3 class="brasa-item__name">1/4 de Pollo a la brasa</h3>
                                 <div class="brasa-item__img">
-                                    <img src="./images/pollo+gaseosa.png" alt="pollo a la brasa + gaseosa">
+                                    <img src="./images/cuartoPollo.png" alt="1/4 pollo a la brasa">
                                 </div>
                                 <p class="brasa-item__description">
-                                    1/4 de Pollo a la brasa con papas, gaseosa y cremas
+                                    1/4 de Pollo a la brasa con papas y cremas
                                 </p>
                                 <p class="brasa-item__price">S/. 17.00</p>
                                 <button class="btn-addProduct-brasa">
@@ -499,7 +478,7 @@
                     
                 </div>
                 <div class="header-shopcar">
-                    <span> 0 </span>
+                    <span id="totalProductsHeader"> 0 </span>
                 </div>
     
             </div>
@@ -664,5 +643,6 @@
     <script src="./js/cartaSoup.js"></script>
     <script src="./js/cartaBeverages.js"></script>
     <script src="./js/shopCart.js"></script>
+    <script type="module" src="./js/main.js"></script>
 </body>
 </html>
