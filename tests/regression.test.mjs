@@ -20,3 +20,11 @@ test('rejects fractional quantities and preserves decimal totals', () => {
   assert.equal(food.getAmount(), 3);
   assert.equal(new ShoppingCart([food]).priceTotal(), 0.3);
 });
+
+test('rejects empty prices and unsafe line amounts', () => {
+  for (const price of [null, '', '  ', true, Infinity]) {
+    assert.throws(() => new Food('Invalid', 1, price, ''));
+  }
+  const huge = new Food('Huge', Number.MAX_SAFE_INTEGER, 1, '');
+  assert.throws(() => huge.calculatePrice());
+});

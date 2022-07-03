@@ -34,9 +34,10 @@ class ShoppingCart{
     priceTotal(){
         let total = 0;
         for(let i = 0; i < this.products.length; i++){
-            total += this.products[i].calculatePrice();
+            total += Math.round(this.products[i].calculatePrice() * 100);
+            if (!Number.isSafeInteger(total)) throw new Error('Total fuera de rango');
         }
-        return Math.round(total * 100) / 100;
+        return total / 100;
     }
     toString(){
         return this.products.map(product => product.toString()).join("\n");

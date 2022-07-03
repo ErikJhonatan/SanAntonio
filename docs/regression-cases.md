@@ -12,3 +12,9 @@ Prepared for this change. **Not executed.** Tests, manual checks, lint and build
 Automated cases are prepared in `tests/regression.test.mjs`. After authorization, run `node --test tests/regression.test.mjs`. They have not been executed.
 
 Additional prepared UI cases: add two distinct products then delete the first; model and DOM both retain only the second. Increment/decrement quantity and verify model-based total and header count. Re-add products repeatedly and verify one increment per click or keyboard action. Not executed.
+
+## Additional cases (not executed)
+
+| Case | Input or setup | Expected outcome |
+| --- | --- | --- |
+| Unsafe money | Null/blank price or a quantity producing unsafe cents | Invalid price or total rejected |

@@ -29,7 +29,8 @@ class Food {
     }
     setPrice = function(price){
         const value = Number(price);
-        if (!Number.isFinite(value) || value < 0) throw new Error('Precio inválido');
+        if ((typeof price !== 'number' && (typeof price !== 'string' || !price.trim())) ||
+            value < 0 || !Number.isSafeInteger(Math.round(value * 100))) throw new Error('Precio inválido');
         this.price_ = value;
     }
     setDescription = function(description){
@@ -37,7 +38,9 @@ class Food {
     }
     // metodos
     calculatePrice = function(){
-        return Math.round(this.price_ * 100) * this.amount_ / 100;
+        const cents = Math.round(this.price_ * 100) * this.amount_;
+        if (!Number.isSafeInteger(cents)) throw new Error('Importe fuera de rango');
+        return cents / 100;
     }
     toString = function(){
         return `${this.name_} - ${this.amount_} - ${this.price_} - ${this.description_}`;
