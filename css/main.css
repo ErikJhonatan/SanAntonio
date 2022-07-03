@@ -718,7 +718,7 @@ footer .footer-main__social span{
     
 }
 .cart-item__img {
-    margin-right: 15px;
+    margin-right: 10px;
 }
 .cart-item__img img{
     width: 150px;
@@ -727,7 +727,7 @@ footer .footer-main__social span{
     font-size: 1.8rem;
 }
 .cart-item__description p{
-    width: 110px;
+    width: 100px;
     margin-left: 0px;
     margin-right: 0px;
     font-size: 1.2rem;
@@ -766,7 +766,7 @@ footer .footer-main__social span{
     background-position: center;
     background-repeat: no-repeat;
     cursor: pointer;
-    width: 18px;
-    height: 18px;
+    width: 15px;
+    height: 15px;
     margin-left: 10px;
 }
