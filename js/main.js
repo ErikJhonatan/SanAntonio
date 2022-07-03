@@ -21,19 +21,26 @@ function addToCartClickedParrilla(event){
     divShoppingCartEmpty.remove();
     }
     const product = new Food(itemName, 1, itemPriceValue, itemDescription);
-    addItemToShoppingCart(
-        product.getNameFood(),
-        product.getAmount(),
-        product.getDescription(),
-        product.calculatePrice(),
-        itemImg
-    );
-    shoppingCart.addProduct(product);
-    swal({
-        title: "Agregado con exito!",
-        text: "Para continuar comprando, presiona Aceptar",
-        icon: "success",
-        button: "Aceptar",});
+    if(shoppingCart.addProductArray(product)){
+        swal({
+            title: "Agregado con exito!",
+            text: "Para continuar comprando, presiona Aceptar",
+            icon: "success",
+            button: "Aceptar",});
+            addItemToShoppingCart(
+                product.getNameFood(),
+                product.getAmount(),
+                product.getDescription(),
+                product.calculatePrice(),
+                itemImg)
+            } else {
+                swal({
+                    title: "Error!",
+                    text: "El producto ya se encuentra en el carrito",
+                    icon: "error",
+                    button: "Aceptar",});
+            }
+     
         const btnPlus = document.querySelectorAll('.cart-item__count-plus');
         btnPlus.forEach(btn => {
             btn.addEventListener("click",plusClicked);
@@ -87,6 +94,8 @@ function addToCartClickedParrilla(event){
         shoppingCart.getProducts()[index].calculatePrice();
         const priceTotalProducts=shoppingCart.priceTotal();
         priceTotal(priceTotalProducts);
+        let totalProduct = shoppingCart.totalProducts();
+        totalProducts(totalProduct);
     }
     function minusClicked(event){
         const button = event.target;
@@ -105,20 +114,22 @@ function addToCartClickedParrilla(event){
         shoppingCart.getProducts()[index].calculatePrice();
         const priceTotalProducts=shoppingCart.priceTotal();
         priceTotal(priceTotalProducts);
+        let totalProduct = shoppingCart.totalProducts();
+        totalProducts(totalProduct);
     }
     function priceTotal(priceTotalProducts){
         const priceTotal = document.querySelector('#shoppingtotalPay');
         priceTotal.textContent = `S/. ${priceTotalProducts}`;
     }
 function addItemToShoppingCart(name, amount, description, price, img){
- const divItem = document.createElement('div');
- divItem.classList.add('shoppingCart__item');
+    const divItem = document.createElement('div');
+  divItem.classList.add('shoppingCart__item');
  const shoppingCartTags = `
  <div class="cart-item__img">
                 <img src="${img}" alt="">
             </div>
             <div class="cart-item__description">
-                <h3 id="name">${name}</h3>
+                <h3 class="cart-item__name" id="name">${name}</h3>
                 <p id="price"> Precio: S/. ${price}</p>
                 <p> ${description}</p>
                 <div class="cart-item__count">
@@ -144,4 +155,6 @@ function addItemToShoppingCart(name, amount, description, price, img){
 function totalProducts(totalProduct){
     const totalProducts = document.querySelector('#totalProducts');
     totalProducts.textContent = `${totalProduct}`;
+    const totalProductsHeader = document.querySelector('#totalProductsHeader');
+    totalProductsHeader.textContent = `${totalProduct}`;
 }
