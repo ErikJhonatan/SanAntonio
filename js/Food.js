@@ -1,8 +1,8 @@
 class Food {
     constructor(name, amount, price, description){
         this.name_ = name;
-        this.amount_ = amount;
-        this.price_ = price;
+        this.setAmount(amount);
+        this.setPrice(price);
         this.description_ = description;
     }
     // getter
@@ -23,17 +23,21 @@ class Food {
         this.name_ = nameFood;
     }
     setAmount = function(amount){
-        this.amount_ = amount;
+        const value = Number(amount);
+        if (!Number.isSafeInteger(value) || value <= 0) throw new Error('Cantidad inválida');
+        this.amount_ = value;
     }
     setPrice = function(price){
-        this.price_ = price;
+        const value = Number(price);
+        if (!Number.isFinite(value) || value < 0) throw new Error('Precio inválido');
+        this.price_ = value;
     }
     setDescription = function(description){
         this.description_ = description;
     }
     // metodos
     calculatePrice = function(){
-        return this.amount_ * this.price_;
+        return Math.round(this.price_ * 100) * this.amount_ / 100;
     }
     toString = function(){
         return `${this.name_} - ${this.amount_} - ${this.price_} - ${this.description_}`;

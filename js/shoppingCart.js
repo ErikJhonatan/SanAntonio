@@ -4,12 +4,14 @@ class ShoppingCart{
         this.products = products;
     }
     deleteByIndex(index){
-        this.products.splice(index,1);
+        if (!Number.isInteger(index) || index < 0 || index >= this.products.length) return false;
+        this.products.splice(index, 1);
+        return true;
     }
     addProductArray(product){
         let existe = false;
         for(let i = 0; i < this.products.length; i++){
-            if(this.products[i].getNameFood() === product.getNameFood()){
+            if(this.products[i].getNameFood() === product.getNameFood() && this.products[i].getPrice() === product.getPrice()){
                 existe = true;
             }
         }
@@ -27,14 +29,14 @@ class ShoppingCart{
         return -1;
     }
     removeProduct(product){
-        this.products.splice(this.products.indexOf(product), 1);
+        return this.deleteByIndex(this.products.indexOf(product));
     }
     priceTotal(){
         let total = 0;
         for(let i = 0; i < this.products.length; i++){
             total += this.products[i].calculatePrice();
         }
-        return total;
+        return Math.round(total * 100) / 100;
     }
     toString(){
         return this.products.map(product => product.toString()).join("\n");
