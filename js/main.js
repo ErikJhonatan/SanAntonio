@@ -59,6 +59,292 @@ function addToCartClickedParrilla(event){
             let totalProduct = shoppingCart.totalProducts();
             totalProducts(totalProduct);
     }
+    const addToShoppingCartButtonsBrasa = document.querySelectorAll(".btn-addProduct-brasa");
+    addToShoppingCartButtonsBrasa.forEach(button => {
+        button.addEventListener("click",
+        addToCartClickedBrasa);
+    }
+    );
+    function addToCartClickedBrasa(event){
+        const button = event.target;
+        const item = button.closest('.brasa-item__details');
+        const itemName = item.querySelector('.brasa-item__name').textContent;
+        const itemDescription = item.querySelector('.brasa-item__description').textContent;
+        const itemPrice = item.querySelector('.brasa-item__price').textContent;
+        const itemPriceValue = parseFloat(itemPrice.replace("S/. ",""));
+        const itemImg = item.querySelector('.brasa-item__img img').src;
+        const divShoppingCartEmpty = document.querySelector('.shoppingCart-container__empty');
+        if(divShoppingCartEmpty){
+        divShoppingCartEmpty.remove();
+        }
+        const product = new Food(itemName, 1, itemPriceValue, itemDescription);
+        if(shoppingCart.addProductArray(product)){
+            swal({
+                title: "Agregado con exito!",
+                text: "Para continuar comprando, presiona Aceptar",
+                icon: "success",
+                button: "Aceptar",});
+                addItemToShoppingCart(
+                    product.getNameFood(),
+                    product.getAmount(),
+                    product.getDescription(),
+                    product.calculatePrice(),
+                    itemImg)
+            }
+            else{
+                swal({
+                    title: "Error!",
+                    text: "El producto ya se encuentra en el carrito",
+                    icon: "error",
+                    button: "Aceptar",});
+            }
+            const btnPlus = document.querySelectorAll('.cart-item__count-plus');
+            btnPlus.forEach(btn => {
+                btn.addEventListener("click",plusClicked);
+            }
+            );
+            const btnMinus = document.querySelectorAll('.cart-item__count-minus');
+            btnMinus.forEach(btn => {
+                btn.addEventListener("click",
+                minusClicked);});
+            const btnDelete = document.querySelectorAll('.item_delete');
+            btnDelete.forEach(btn => {
+                btn.addEventListener("click",
+                deleteClicked);});
+                let priceTotalProducts=shoppingCart.priceTotal();
+                priceTotal(priceTotalProducts);
+                let totalProduct = shoppingCart.totalProducts();
+                totalProducts(totalProduct);
+            }
+            const addToShoppingCartButtonsSalad = document.querySelectorAll(".btn-addProduct-salad");
+            addToShoppingCartButtonsSalad.forEach(button => {
+                button.addEventListener("click",
+                addToCartClickedSalad);
+            }
+            );
+            function addToCartClickedSalad(event){
+                const button = event.target;
+                const item = button.closest('.salad-item__details');
+                const itemName = item.querySelector('.salad-item__name').textContent;
+                const itemDescription = item.querySelector('.salad-item__description').textContent;
+                const itemPrice = item.querySelector('.salad-item__price').textContent;
+                const itemPriceValue = parseFloat(itemPrice.replace("S/. ",""));
+                const itemImg = item.querySelector('.salad-item__img img').src;
+                const divShoppingCartEmpty = document.querySelector('.shoppingCart-container__empty');
+                if(divShoppingCartEmpty){
+                divShoppingCartEmpty.remove();
+                }
+                const product = new Food(itemName, 1, itemPriceValue, itemDescription);
+                if(shoppingCart.addProductArray(product)){
+                    swal({
+                        title: "Agregado con exito!",
+                        text: "Para continuar comprando, presiona Aceptar",
+                        icon: "success",
+                        button: "Aceptar",});
+                        addItemToShoppingCart(
+                            product.getNameFood(),
+                            product.getAmount(),
+                            product.getDescription(),
+                            product.calculatePrice(),
+                            itemImg)
+                    }
+                    else{
+                        swal({
+                            title: "Error!",
+                            text: "El producto ya se encuentra en el carrito",
+                            icon: "error",
+                            button: "Aceptar",});
+                    }
+                    const btnPlus = document.querySelectorAll('.cart-item__count-plus');
+                    btnPlus.forEach(btn => {
+                        btn.addEventListener("click",plusClicked);
+                    }
+                    );
+                    const btnMinus = document.querySelectorAll('.cart-item__count-minus');
+                    btnMinus.forEach(btn => {
+                        btn.addEventListener("click",
+                        minusClicked);});
+                    const btnDelete = document.querySelectorAll('.item_delete');
+                    btnDelete.forEach(btn => {
+                        btn.addEventListener("click",
+                        deleteClicked);});
+                        let priceTotalProducts=shoppingCart.priceTotal();
+                        priceTotal(priceTotalProducts);
+                        let totalProduct = shoppingCart.totalProducts();
+                        totalProducts(totalProduct);
+                    }
+                    const addToShoppingCartButtonsFastFood = document.querySelectorAll(".btn-addProduct-fast-food");
+                    addToShoppingCartButtonsFastFood.forEach(button => {
+                        button.addEventListener("click",
+                        addToCartClickedFastFood);
+                    }
+                    );
+                    function addToCartClickedFastFood(event){
+                        const button = event.target;
+                        const item = button.closest('.fast-food-item__details');
+                        const itemName = item.querySelector('.fast-food-item__name').textContent;
+                        const itemDescription = item.querySelector('.fast-food-item__description').textContent;
+                        const itemPrice = item.querySelector('.fast-food-item__price').textContent;
+                        const itemPriceValue = parseFloat(itemPrice.replace("S/. ",""));
+                        const itemImg = item.querySelector('.fast-food-item__img img').src;
+                        const divShoppingCartEmpty = document.querySelector('.shoppingCart-container__empty');
+                        if(divShoppingCartEmpty){
+                        divShoppingCartEmpty.remove();
+                        }
+                        const product = new Food(itemName, 1, itemPriceValue, itemDescription);
+                        if(shoppingCart.addProductArray(product)){
+                            swal({
+                                title: "Agregado con exito!",
+                                text: "Para continuar comprando, presiona Aceptar",
+                                icon: "success",
+                                button: "Aceptar",});
+                                addItemToShoppingCart(
+                                    product.getNameFood(),
+                                    product.getAmount(),
+                                    product.getDescription(),
+                                    product.calculatePrice(),
+                                    itemImg)
+                            }
+                            else{
+                                swal({
+                                    title: "Error!",
+                                    text: "El producto ya se encuentra en el carrito",
+                                    icon: "error",
+                                    button: "Aceptar",});
+                            }
+                            const btnPlus = document.querySelectorAll('.cart-item__count-plus');
+                            btnPlus.forEach(btn => {
+                                btn.addEventListener("click",plusClicked);
+                            }
+                            );
+                            const btnMinus = document.querySelectorAll('.cart-item__count-minus');
+                            btnMinus.forEach(btn => {
+                                btn.addEventListener("click",
+                                minusClicked);});
+                                const btnDelete = document.querySelectorAll('.item_delete');
+                                btnDelete.forEach(btn => {
+                                    btn.addEventListener("click",
+                                    deleteClicked);});
+                                    let priceTotalProducts=shoppingCart.priceTotal();
+                                    priceTotal(priceTotalProducts);
+                                    let totalProduct = shoppingCart.totalProducts();
+                                    totalProducts(totalProduct);
+                                }
+                                const addToShoppingCartButtonsSoup = document.querySelectorAll(".btn-addProduct-soup");
+                                addToShoppingCartButtonsSoup.forEach(button => {
+                                    button.addEventListener("click",
+                                    addToCartClickedSoup);
+                                }
+                                );
+                                function addToCartClickedSoup(event){
+                                    const button = event.target;
+                                    const item = button.closest('.soup-item__details');
+                                    const itemName = item.querySelector('.soup-item__name').textContent;
+                                    const itemDescription = item.querySelector('.soup-item__description').textContent;
+                                    const itemPrice = item.querySelector('.soup-item__price').textContent;
+                                    const itemPriceValue = parseFloat(itemPrice.replace("S/. ",""));
+                                    const itemImg = item.querySelector('.soup-item__img img').src;
+                                    const divShoppingCartEmpty = document.querySelector('.shoppingCart-container__empty');
+                                    if(divShoppingCartEmpty){
+                                    divShoppingCartEmpty.remove();
+                                    }
+                                    const product = new Food(itemName, 1, itemPriceValue, itemDescription);
+                                    if(shoppingCart.addProductArray(product)){
+                                        swal({
+                                            title: "Agregado con exito!",
+                                            text: "Para continuar comprando, presiona Aceptar",
+                                            icon: "success",
+                                            button: "Aceptar",});
+                                            addItemToShoppingCart(
+                                                product.getNameFood(),
+                                                product.getAmount(),
+                                                product.getDescription(),
+                                                product.calculatePrice(),
+                                                itemImg)
+                                        }
+                                        else{
+                                            swal({
+                                                title: "Error!",
+                                                text: "El producto ya se encuentra en el carrito",
+                                                icon: "error",
+                                                button: "Aceptar",});
+                                        }
+                                        const btnPlus = document.querySelectorAll('.cart-item__count-plus');
+                                        btnPlus.forEach(btn => {
+                                            btn.addEventListener("click",plusClicked);
+                                        }
+                                        );
+                                        const btnMinus = document.querySelectorAll('.cart-item__count-minus');
+                                        btnMinus.forEach(btn => {
+                                            btn.addEventListener("click",
+                                            minusClicked);});
+                                            const btnDelete = document.querySelectorAll('.item_delete');
+                                            btnDelete.forEach(btn => {
+                                                btn.addEventListener("click",
+                                                deleteClicked);});
+                                                let priceTotalProducts=shoppingCart.priceTotal();
+                                                priceTotal(priceTotalProducts);
+                                                let totalProduct = shoppingCart.totalProducts();
+                                                totalProducts(totalProduct);
+                                            }
+                                            const addToShoppingCartButtonsBeverages = document.querySelectorAll(".btn-addProduct-beverages");
+                                            addToShoppingCartButtonsBeverages.forEach(button => {
+                                                button.addEventListener("click",
+                                                addToCartClickedBeverages);
+                                            }
+                                            );
+                                            function addToCartClickedBeverages(event){
+                                                const button = event.target;
+                                                const item = button.closest('.beverages-item__details');
+                                                const itemName = item.querySelector('.beverages-item__name').textContent;
+                                                const itemDescription = item.querySelector('.beverages-item__description').textContent;
+                                                const itemPrice = item.querySelector('.beverages-item__price').textContent;
+                                                const itemPriceValue = parseFloat(itemPrice.replace("S/. ",""));
+                                                const itemImg = item.querySelector('.beverages-item__img img').src;
+                                                const divShoppingCartEmpty = document.querySelector('.shoppingCart-container__empty');
+                                                if(divShoppingCartEmpty){
+                                                divShoppingCartEmpty.remove();
+                                                }
+                                                const product = new Food(itemName, 1, itemPriceValue, itemDescription);
+                                                if(shoppingCart.addProductArray(product)){
+                                                    swal({
+                                                        title: "Agregado con exito!",
+                                                        text: "Para continuar comprando, presiona Aceptar",
+                                                        icon: "success",
+                                                        button: "Aceptar",});
+                                                        addItemToShoppingCart(
+                                                            product.getNameFood(),
+                                                            product.getAmount(),
+                                                            product.getDescription(),
+                                                            product.calculatePrice(),
+                                                            itemImg)
+                                                    }
+                                                    else{
+                                                        swal({
+                                                            title: "Error!",
+                                                            text: "El producto ya se encuentra en el carrito",
+                                                            icon: "error",
+                                                            button: "Aceptar",});
+                                                    }
+                                                    const btnPlus = document.querySelectorAll('.cart-item__count-plus');
+                                                    btnPlus.forEach(btn => {
+                                                        btn.addEventListener("click",plusClicked);
+                                                    }
+                                                    );
+                                                    const btnMinus = document.querySelectorAll('.cart-item__count-minus');
+                                                    btnMinus.forEach(btn => {
+                                                        btn.addEventListener("click",
+                                                        minusClicked);});
+                                                        const btnDelete = document.querySelectorAll('.item_delete');
+                                                        btnDelete.forEach(btn => {
+                                                            btn.addEventListener("click",
+                                                            deleteClicked);});
+                                                            let priceTotalProducts=shoppingCart.priceTotal();
+                                                            priceTotal(priceTotalProducts);
+                                                            let totalProduct = shoppingCart.totalProducts();
+                                                            totalProducts(totalProduct);
+                                                        }
+                                                        
     function deleteClicked(event){
         const button = event.target;
         const item = button.closest('.shoppingCart__item');
@@ -86,7 +372,6 @@ function addToCartClickedParrilla(event){
         const index = shoppingCart.getProducts().findIndex(product => product.getNameFood() === nameItem.querySelector('.cart-item__description h3').textContent);
       
         const itemAmount= item.querySelector('.cart-item__count-number p').textContent;
-        console.log(itemAmount);
         const itemAmountValue = parseInt(itemAmount);
         const amountItem = itemAmountValue + 1;
         item.querySelector('.cart-item__count-number p').textContent = amountItem;
