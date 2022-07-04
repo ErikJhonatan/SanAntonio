@@ -7,7 +7,7 @@ const addToShoppingCartButtonsParrilla = document.querySelectorAll(
 addToShoppingCartButtonsParrilla.forEach((button) => {
   button.addEventListener("click", addToCartClickedParrilla);
 });
-const shoppingCart = new ShoppingCart();
+let shoppingCart = new ShoppingCart();
 const shoppingCartContainer = document.querySelector(".shoppingCart-container");
 function addToCartClickedParrilla(event) {
   const button = event.target;
@@ -61,10 +61,7 @@ function addToCartClickedParrilla(event) {
   btnDelete.forEach((btn) => {
     btn.addEventListener("click", deleteClicked);
   });
-  let priceTotalProducts = shoppingCart.priceTotal();
-  priceTotal(priceTotalProducts);
-  let totalProduct = shoppingCart.totalProducts();
-  totalProducts(totalProduct);
+  updateShoppingCartTotal();
 }
 const addToShoppingCartButtonsBrasa = document.querySelectorAll(
   ".btn-addProduct-brasa"
@@ -123,10 +120,6 @@ function addToCartClickedBrasa(event) {
   btnDelete.forEach((btn) => {
     btn.addEventListener("click", deleteClicked);
   });
-  let priceTotalProducts = shoppingCart.priceTotal();
-  priceTotal(priceTotalProducts);
-  let totalProduct = shoppingCart.totalProducts();
-  totalProducts(totalProduct);
 }
 const addToShoppingCartButtonsSalad = document.querySelectorAll(
   ".btn-addProduct-salad"
@@ -185,10 +178,6 @@ function addToCartClickedSalad(event) {
   btnDelete.forEach((btn) => {
     btn.addEventListener("click", deleteClicked);
   });
-  let priceTotalProducts = shoppingCart.priceTotal();
-  priceTotal(priceTotalProducts);
-  let totalProduct = shoppingCart.totalProducts();
-  totalProducts(totalProduct);
 }
 const addToShoppingCartButtonsFastFood = document.querySelectorAll(
   ".btn-addProduct-fast-food"
@@ -247,10 +236,7 @@ function addToCartClickedFastFood(event) {
   btnDelete.forEach((btn) => {
     btn.addEventListener("click", deleteClicked);
   });
-  let priceTotalProducts = shoppingCart.priceTotal();
-  priceTotal(priceTotalProducts);
-  let totalProduct = shoppingCart.totalProducts();
-  totalProducts(totalProduct);
+  
 }
 const addToShoppingCartButtonsSoup = document.querySelectorAll(
   ".btn-addProduct-soup"
@@ -309,10 +295,6 @@ function addToCartClickedSoup(event) {
   btnDelete.forEach((btn) => {
     btn.addEventListener("click", deleteClicked);
   });
-  let priceTotalProducts = shoppingCart.priceTotal();
-  priceTotal(priceTotalProducts);
-  let totalProduct = shoppingCart.totalProducts();
-  totalProducts(totalProduct);
 }
 const addToShoppingCartButtonsBeverages = document.querySelectorAll(
   ".btn-addProduct-beverages"
@@ -359,6 +341,10 @@ function addToCartClickedBeverages(event) {
       button: "Aceptar",
     });
   }
+  const btnDelete = document.querySelectorAll(".item_delete");
+  btnDelete.forEach((btn) => {
+    btn.addEventListener("click", deleteClicked);
+  });
   const btnPlus = document.querySelectorAll(".cart-item__count-plus");
   btnPlus.forEach((btn) => {
     btn.addEventListener("click", plusClicked);
@@ -367,38 +353,25 @@ function addToCartClickedBeverages(event) {
   btnMinus.forEach((btn) => {
     btn.addEventListener("click", minusClicked);
   });
-  const btnDelete = document.querySelectorAll(".item_delete");
-  btnDelete.forEach((btn) => {
-    btn.addEventListener("click", deleteClicked);
-  });
-  let priceTotalProducts = shoppingCart.priceTotal();
-  priceTotal(priceTotalProducts);
-  let totalProduct = shoppingCart.totalProducts();
-  totalProducts(totalProduct);
 }
 
 function deleteClicked(event) {
   const button = event.target;
-  const item = button.closest(".shoppingCart__item");
-  const itemName = item.querySelector(
-    ".cart-item__description #name"
-  ).textContent;
-  const itemPrice = item.querySelector(
-    ".cart-item__description #price"
-  ).textContent;
-  const itemPriceValue = parseFloat(itemPrice.replace("S/. ", ""));
-  shoppingCart.removeProduct(itemName, itemPriceValue);
-  item.remove();
-  const divItem = document.createElement("div");
+  const item = button.closest('.shoppingCart__item');
+  const itemName = item.querySelector('.cart-item__description .cart-item__name').textContent;
+  const itemPrice = item.querySelector('.cart-item__description ,cart-item__price').textContent;
+  const itemPriceValue = parseFloat(itemPrice.replace("S/. ",""));
+  // index de objeto por nombre, precio y descripcion
+  let index = shoppingCart.findIndexProducts(itemName, itemPriceValue);
+   shoppingCart.removeProduct(shoppingCart.getProducts()[index+1]); 
+  const divItem = document.createElement('div');
   divItem.classList.add("shoppingCart-container__empty");
-  if (shoppingCart.getProducts().length === 0) {
-    divItem.innerHTML = `<h2>No hay productos en el carrito</h2>`;
-    shoppingCartContainer.appendChild(divItem);
+  if(shoppingCart.getProducts().length === 0){
+      divItem.innerHTML = `<h2>No hay productos en el carrito</h2>`;
+      shoppingCartContainer.appendChild(divItem);
   }
-  const priceTotalProducts = shoppingCart.priceTotal();
-  priceTotal(priceTotalProducts);
-  let totalProduct = shoppingCart.totalProducts();
-  totalProducts(totalProduct);
+  item.remove();
+  updateShoppingCartTotal();
 }
 function plusClicked(event) {
   const button = event.target;
@@ -421,10 +394,7 @@ function plusClicked(event) {
   item.querySelector(".cart-item__count-number p").textContent = amountItem;
   shoppingCart.getProducts()[index].setAmount(amountItem);
   shoppingCart.getProducts()[index].calculatePrice();
-  const priceTotalProducts = shoppingCart.priceTotal();
-  priceTotal(priceTotalProducts);
-  let totalProduct = shoppingCart.totalProducts();
-  totalProducts(totalProduct);
+  updateShoppingCartTotal();
 }
 function minusClicked(event) {
   const button = event.target;
@@ -433,30 +403,21 @@ function minusClicked(event) {
     ".cart-item__count-number p"
   ).textContent;
   const nameItem = button.closest(".cart-item__description");
-  //Buscar el index de un objeto por su nombre
-  const index = shoppingCart
-    .getProducts()
-    .findIndex(
-      (product) =>
-        product.getNameFood() ===
-        nameItem.querySelector(".cart-item__description h3").textContent
-    );
+  
   const itemAmountValue = parseInt(itemAmount);
   let amountItem = 1;
   if (itemAmountValue > 1) {
     amountItem = itemAmountValue - 1;
   }
   item.querySelector(".cart-item__count-number p").textContent = amountItem;
-  shoppingCart.getProducts()[index].setAmount(amountItem);
-  shoppingCart.getProducts()[index].calculatePrice();
-  const priceTotalProducts = shoppingCart.priceTotal();
-  priceTotal(priceTotalProducts);
-  let totalProduct = shoppingCart.totalProducts();
-  totalProducts(totalProduct);
-}
-function priceTotal(priceTotalProducts) {
-  const priceTotal = document.querySelector("#shoppingtotalPay");
-  priceTotal.textContent = `S/. ${priceTotalProducts}`;
+  let index = shoppingCart
+  .getProducts()
+  .findIndex(
+    (product) =>
+      product.getNameFood() ===
+      nameItem.querySelector(".cart-item__description h3").textContent
+  );
+  updateShoppingCartTotal();
 }
 function addItemToShoppingCart(name, amount, description, price, img) {
   const divItem = document.createElement("div");
@@ -467,8 +428,7 @@ function addItemToShoppingCart(name, amount, description, price, img) {
             </div>
             <div class="cart-item__description">
                 <h3 class="cart-item__name" id="name">${name}</h3>
-                <p id="price"> Precio: S/. ${price}</p>
-                <p> ${description}</p>
+                <p id="price" class="cart-item__price"> Precio: S/. ${price}</p>
                 <div class="cart-item__count">
                     <h3>Cantidad:</h3>
                     <div class="cart-item__count-container">
@@ -488,10 +448,25 @@ function addItemToShoppingCart(name, amount, description, price, img) {
                 `;
   divItem.innerHTML = shoppingCartTags;
   shoppingCartContainer.append(divItem);
+  updateShoppingCartTotal();
 }
-function totalProducts(totalProduct) {
-  const totalProducts = document.querySelector("#totalProducts");
-  totalProducts.textContent = `${totalProduct}`;
+function updateShoppingCartTotal(){
+  let total = 0;
+  let totalAmount = 0;
+  const shoppingCartTotal = document.querySelector("#shoppingtotalPay");
+  const shoppingCartTotalAmount = document.querySelector("#totalProducts");
   const totalProductsHeader = document.querySelector("#totalProductsHeader");
-  totalProductsHeader.textContent = `${totalProduct}`;
+  const shoppingCartItems = document.querySelectorAll(".shoppingCart__item");
+  shoppingCartItems.forEach((item) => {
+    const itemPrice = item.querySelector(".cart-item__description .cart-item__price").textContent;
+    const itemPriceValue = parseFloat(itemPrice.replace("Precio: S/. ",""));
+    const itemAmount = item.querySelector(".cart-item__description  .cart-item__count .cart-item__count-container .cart-item__count-number #count-cart").textContent;
+    const itemAmountValue = parseInt(itemAmount);
+    total += itemPriceValue * itemAmountValue;
+    totalAmount += itemAmountValue;
+  }
+  );
+  shoppingCartTotal.innerHTML = `S/. ${total}`;
+  shoppingCartTotalAmount.innerHTML = `${totalAmount}`;
+  totalProductsHeader.innerHTML = `${totalAmount}`;
 }

@@ -714,7 +714,9 @@ footer .footer-main__social span{
     background-repeat: no-repeat;
 }
 .shoppingCart__item{
-    margin: 20px;
+    margin-top: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
     display: flex;
     justify-content: center;
     
@@ -734,7 +736,7 @@ footer .footer-main__social span{
     width: 100px;
     margin-left: 0px;
     margin-right: 0px;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     text-align: justify;
 }
 .cart-item__count-container{
