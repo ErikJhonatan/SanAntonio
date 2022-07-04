@@ -1,420 +1,70 @@
-import { Food } from "./Food.js";
-import { ShoppingCart } from "./shoppingCart.js";
+import {Food} from './Food.js';
+import {ShoppingCart} from './shoppingCart.js';
 
-const addToShoppingCartButtonsParrilla = document.querySelectorAll(
-  ".btn-addProduct-parrilla"
-);
-addToShoppingCartButtonsParrilla.forEach((button) => {
-  button.addEventListener("click", addToCartClickedParrilla);
-});
-let shoppingCart = new ShoppingCart();
-const shoppingCartContainer = document.querySelector(".shoppingCart-container");
-function addToCartClickedParrilla(event) {
-  const button = event.target;
-  const item = button.closest(".parrilla-item__details");
-  const itemName = item.querySelector(".parrilla-item__name").textContent;
-  const itemDescription = item.querySelector(
-    ".parrilla-item__description"
-  ).textContent;
-  const itemPrice = item.querySelector(".parrilla-item__price").textContent;
-  const itemPriceValue = parseFloat(itemPrice.replace("S/. ", ""));
-  const itemImg = item.querySelector(".parrilla-item__img img").src;
-  const divShoppingCartEmpty = document.querySelector(
-    ".shoppingCart-container__empty"
-  );
-  if (divShoppingCartEmpty) {
-    divShoppingCartEmpty.remove();
+const shoppingCart = new ShoppingCart();
+const shoppingCartContainer = document.querySelector('.shoppingCart-container');
+const categories = ['parrilla', 'brasa', 'salad', 'fast-food', 'soup', 'beverages'];
+for (const category of categories) {
+  for (const button of document.querySelectorAll('.btn-addProduct-' + category)) {
+    button.addEventListener('click', () => addFromCard(button, category));
   }
-  const product = new Food(itemName, 1, itemPriceValue, itemDescription);
-  if (shoppingCart.addProductArray(product)) {
-    swal({
-      title: "Agregado con exito!",
-      text: "Para continuar comprando, presiona Aceptar",
-      icon: "success",
-      button: "Aceptar",
-    });
-    addItemToShoppingCart(
-      product.getNameFood(),
-      product.getAmount(),
-      product.getDescription(),
-      product.calculatePrice(),
-      itemImg
-    );
-  } else {
-    swal({
-      title: "Error!",
-      text: "El producto ya se encuentra en el carrito",
-      icon: "error",
-      button: "Aceptar",
-    });
-  }
-
-  const btnPlus = document.querySelectorAll(".cart-item__count-plus");
-  btnPlus.forEach((btn) => {
-    btn.addEventListener("click", plusClicked);
-  });
-  const btnMinus = document.querySelectorAll(".cart-item__count-minus");
-  btnMinus.forEach((btn) => {
-    btn.addEventListener("click", minusClicked);
-  });
-  const btnDelete = document.querySelectorAll(".item_delete");
-  btnDelete.forEach((btn) => {
-    btn.addEventListener("click", deleteClicked);
-  });
-  updateShoppingCartTotal();
 }
-const addToShoppingCartButtonsBrasa = document.querySelectorAll(
-  ".btn-addProduct-brasa"
-);
-addToShoppingCartButtonsBrasa.forEach((button) => {
-  button.addEventListener("click", addToCartClickedBrasa);
-});
-function addToCartClickedBrasa(event) {
-  const button = event.target;
-  const item = button.closest(".brasa-item__details");
-  const itemName = item.querySelector(".brasa-item__name").textContent;
-  const itemDescription = item.querySelector(
-    ".brasa-item__description"
-  ).textContent;
-  const itemPrice = item.querySelector(".brasa-item__price").textContent;
-  const itemPriceValue = parseFloat(itemPrice.replace("S/. ", ""));
-  const itemImg = item.querySelector(".brasa-item__img img").src;
-  const divShoppingCartEmpty = document.querySelector(
-    ".shoppingCart-container__empty"
-  );
-  if (divShoppingCartEmpty) {
-    divShoppingCartEmpty.remove();
+function addFromCard(button, category) {
+  const card = button.closest('.' + category + '-item__details');
+  if (!card || !shoppingCartContainer) return;
+  const get = suffix => card.querySelector('.' + category + '-item__' + suffix);
+  const name = get('name')?.textContent;
+  const description = get('description')?.textContent || '';
+  const price = Number(get('price')?.textContent.replace('S/. ', '').trim());
+  const image = get('img')?.querySelector('img')?.src;
+  if (!name || !Number.isFinite(price) || price < 0 || !image) return;
+  const product = new Food(name, 1, price, description);
+  if (!shoppingCart.addProductArray(product)) {
+    swal({title: 'Error!', text: 'El producto ya se encuentra en el carrito', icon: 'error', button: 'Aceptar'});
+    return;
   }
-  const product = new Food(itemName, 1, itemPriceValue, itemDescription);
-  if (shoppingCart.addProductArray(product)) {
-    swal({
-      title: "Agregado con exito!",
-      text: "Para continuar comprando, presiona Aceptar",
-      icon: "success",
-      button: "Aceptar",
-    });
-    addItemToShoppingCart(
-      product.getNameFood(),
-      product.getAmount(),
-      product.getDescription(),
-      product.calculatePrice(),
-      itemImg
-    );
-  } else {
-    swal({
-      title: "Error!",
-      text: "El producto ya se encuentra en el carrito",
-      icon: "error",
-      button: "Aceptar",
-    });
-  }
-  const btnPlus = document.querySelectorAll(".cart-item__count-plus");
-  btnPlus.forEach((btn) => {
-    btn.addEventListener("click", plusClicked);
-  });
-  const btnMinus = document.querySelectorAll(".cart-item__count-minus");
-  btnMinus.forEach((btn) => {
-    btn.addEventListener("click", minusClicked);
-  });
-  const btnDelete = document.querySelectorAll(".item_delete");
-  btnDelete.forEach((btn) => {
-    btn.addEventListener("click", deleteClicked);
-  });
+  shoppingCartContainer.querySelector('.shoppingCart-container__empty')?.remove();
+  addItemToShoppingCart(name, product.getAmount(), description, price, image);
+  swal({title: 'Agregado con exito!', text: 'Para continuar comprando, presiona Aceptar', icon: 'success', button: 'Aceptar'});
 }
-const addToShoppingCartButtonsSalad = document.querySelectorAll(
-  ".btn-addProduct-salad"
-);
-addToShoppingCartButtonsSalad.forEach((button) => {
-  button.addEventListener("click", addToCartClickedSalad);
+const controlSelector = '.item_delete, .cart-item__count-plus, .cart-item__count-minus';
+shoppingCartContainer?.addEventListener('click', event => {
+  const control = event.target.closest(controlSelector);
+  if (!control || !shoppingCartContainer.contains(control)) return;
+  if (control.matches('.item_delete')) deleteClicked(event);
+  else changeQuantity(event, control.matches('.cart-item__count-plus') ? 1 : -1);
 });
-function addToCartClickedSalad(event) {
-  const button = event.target;
-  const item = button.closest(".salad-item__details");
-  const itemName = item.querySelector(".salad-item__name").textContent;
-  const itemDescription = item.querySelector(
-    ".salad-item__description"
-  ).textContent;
-  const itemPrice = item.querySelector(".salad-item__price").textContent;
-  const itemPriceValue = parseFloat(itemPrice.replace("S/. ", ""));
-  const itemImg = item.querySelector(".salad-item__img img").src;
-  const divShoppingCartEmpty = document.querySelector(
-    ".shoppingCart-container__empty"
-  );
-  if (divShoppingCartEmpty) {
-    divShoppingCartEmpty.remove();
-  }
-  const product = new Food(itemName, 1, itemPriceValue, itemDescription);
-  if (shoppingCart.addProductArray(product)) {
-    swal({
-      title: "Agregado con exito!",
-      text: "Para continuar comprando, presiona Aceptar",
-      icon: "success",
-      button: "Aceptar",
-    });
-    addItemToShoppingCart(
-      product.getNameFood(),
-      product.getAmount(),
-      product.getDescription(),
-      product.calculatePrice(),
-      itemImg
-    );
-  } else {
-    swal({
-      title: "Error!",
-      text: "El producto ya se encuentra en el carrito",
-      icon: "error",
-      button: "Aceptar",
-    });
-  }
-  const btnPlus = document.querySelectorAll(".cart-item__count-plus");
-  btnPlus.forEach((btn) => {
-    btn.addEventListener("click", plusClicked);
-  });
-  const btnMinus = document.querySelectorAll(".cart-item__count-minus");
-  btnMinus.forEach((btn) => {
-    btn.addEventListener("click", minusClicked);
-  });
-  const btnDelete = document.querySelectorAll(".item_delete");
-  btnDelete.forEach((btn) => {
-    btn.addEventListener("click", deleteClicked);
-  });
-}
-const addToShoppingCartButtonsFastFood = document.querySelectorAll(
-  ".btn-addProduct-fast-food"
-);
-addToShoppingCartButtonsFastFood.forEach((button) => {
-  button.addEventListener("click", addToCartClickedFastFood);
+shoppingCartContainer?.addEventListener('keydown', event => {
+  const control = event.target.closest(controlSelector);
+  if (control && (event.key === 'Enter' || event.key === ' ')) { event.preventDefault(); control.click(); }
 });
-function addToCartClickedFastFood(event) {
-  const button = event.target;
-  const item = button.closest(".fast-food-item__details");
-  const itemName = item.querySelector(".fast-food-item__name").textContent;
-  const itemDescription = item.querySelector(
-    ".fast-food-item__description"
-  ).textContent;
-  const itemPrice = item.querySelector(".fast-food-item__price").textContent;
-  const itemPriceValue = parseFloat(itemPrice.replace("S/. ", ""));
-  const itemImg = item.querySelector(".fast-food-item__img img").src;
-  const divShoppingCartEmpty = document.querySelector(
-    ".shoppingCart-container__empty"
-  );
-  if (divShoppingCartEmpty) {
-    divShoppingCartEmpty.remove();
-  }
-  const product = new Food(itemName, 1, itemPriceValue, itemDescription);
-  if (shoppingCart.addProductArray(product)) {
-    swal({
-      title: "Agregado con exito!",
-      text: "Para continuar comprando, presiona Aceptar",
-      icon: "success",
-      button: "Aceptar",
-    });
-    addItemToShoppingCart(
-      product.getNameFood(),
-      product.getAmount(),
-      product.getDescription(),
-      product.calculatePrice(),
-      itemImg
-    );
-  } else {
-    swal({
-      title: "Error!",
-      text: "El producto ya se encuentra en el carrito",
-      icon: "error",
-      button: "Aceptar",
-    });
-  }
-  const btnPlus = document.querySelectorAll(".cart-item__count-plus");
-  btnPlus.forEach((btn) => {
-    btn.addEventListener("click", plusClicked);
-  });
-  const btnMinus = document.querySelectorAll(".cart-item__count-minus");
-  btnMinus.forEach((btn) => {
-    btn.addEventListener("click", minusClicked);
-  });
-  const btnDelete = document.querySelectorAll(".item_delete");
-  btnDelete.forEach((btn) => {
-    btn.addEventListener("click", deleteClicked);
-  });
-  
+function cartEntry(event) {
+  const row = event.target.closest('.shoppingCart__item');
+  if (!row) return null;
+  const index = shoppingCart.findIndexProducts(row.dataset.name, Number(row.dataset.price));
+  return index < 0 ? null : {row, index, product: shoppingCart.getProducts()[index]};
 }
-const addToShoppingCartButtonsSoup = document.querySelectorAll(
-  ".btn-addProduct-soup"
-);
-addToShoppingCartButtonsSoup.forEach((button) => {
-  button.addEventListener("click", addToCartClickedSoup);
-});
-function addToCartClickedSoup(event) {
-  const button = event.target;
-  const item = button.closest(".soup-item__details");
-  const itemName = item.querySelector(".soup-item__name").textContent;
-  const itemDescription = item.querySelector(
-    ".soup-item__description"
-  ).textContent;
-  const itemPrice = item.querySelector(".soup-item__price").textContent;
-  const itemPriceValue = parseFloat(itemPrice.replace("S/. ", ""));
-  const itemImg = item.querySelector(".soup-item__img img").src;
-  const divShoppingCartEmpty = document.querySelector(
-    ".shoppingCart-container__empty"
-  );
-  if (divShoppingCartEmpty) {
-    divShoppingCartEmpty.remove();
-  }
-  const product = new Food(itemName, 1, itemPriceValue, itemDescription);
-  if (shoppingCart.addProductArray(product)) {
-    swal({
-      title: "Agregado con exito!",
-      text: "Para continuar comprando, presiona Aceptar",
-      icon: "success",
-      button: "Aceptar",
-    });
-    addItemToShoppingCart(
-      product.getNameFood(),
-      product.getAmount(),
-      product.getDescription(),
-      product.calculatePrice(),
-      itemImg
-    );
-  } else {
-    swal({
-      title: "Error!",
-      text: "El producto ya se encuentra en el carrito",
-      icon: "error",
-      button: "Aceptar",
-    });
-  }
-  const btnPlus = document.querySelectorAll(".cart-item__count-plus");
-  btnPlus.forEach((btn) => {
-    btn.addEventListener("click", plusClicked);
-  });
-  const btnMinus = document.querySelectorAll(".cart-item__count-minus");
-  btnMinus.forEach((btn) => {
-    btn.addEventListener("click", minusClicked);
-  });
-  const btnDelete = document.querySelectorAll(".item_delete");
-  btnDelete.forEach((btn) => {
-    btn.addEventListener("click", deleteClicked);
-  });
-}
-const addToShoppingCartButtonsBeverages = document.querySelectorAll(
-  ".btn-addProduct-beverages"
-);
-addToShoppingCartButtonsBeverages.forEach((button) => {
-  button.addEventListener("click", addToCartClickedBeverages);
-});
-function addToCartClickedBeverages(event) {
-  const button = event.target;
-  const item = button.closest(".beverages-item__details");
-  const itemName = item.querySelector(".beverages-item__name").textContent;
-  const itemDescription = item.querySelector(
-    ".beverages-item__description"
-  ).textContent;
-  const itemPrice = item.querySelector(".beverages-item__price").textContent;
-  const itemPriceValue = parseFloat(itemPrice.replace("S/. ", ""));
-  const itemImg = item.querySelector(".beverages-item__img img").src;
-  const divShoppingCartEmpty = document.querySelector(
-    ".shoppingCart-container__empty"
-  );
-  if (divShoppingCartEmpty) {
-    divShoppingCartEmpty.remove();
-  }
-  const product = new Food(itemName, 1, itemPriceValue, itemDescription);
-  if (shoppingCart.addProductArray(product)) {
-    swal({
-      title: "Agregado con exito!",
-      text: "Para continuar comprando, presiona Aceptar",
-      icon: "success",
-      button: "Aceptar",
-    });
-    addItemToShoppingCart(
-      product.getNameFood(),
-      product.getAmount(),
-      product.getDescription(),
-      product.calculatePrice(),
-      itemImg
-    );
-  } else {
-    swal({
-      title: "Error!",
-      text: "El producto ya se encuentra en el carrito",
-      icon: "error",
-      button: "Aceptar",
-    });
-  }
-  const btnDelete = document.querySelectorAll(".item_delete");
-  btnDelete.forEach((btn) => {
-    btn.addEventListener("click", deleteClicked);
-  });
-  const btnPlus = document.querySelectorAll(".cart-item__count-plus");
-  btnPlus.forEach((btn) => {
-    btn.addEventListener("click", plusClicked);
-  });
-  const btnMinus = document.querySelectorAll(".cart-item__count-minus");
-  btnMinus.forEach((btn) => {
-    btn.addEventListener("click", minusClicked);
-  });
-}
-
 function deleteClicked(event) {
-  const button = event.target;
-  const item = button.closest('.shoppingCart__item');
-  const itemName = item.querySelector('.cart-item__description .cart-item__name').textContent;
-  const itemPrice = item.querySelector('.cart-item__description ,cart-item__price').textContent;
-  const itemPriceValue = parseFloat(itemPrice.replace("S/. ",""));
-  // index de objeto por nombre, precio y descripcion
-  let index = shoppingCart.findIndexProducts(itemName, itemPriceValue);
-   shoppingCart.removeProduct(shoppingCart.getProducts()[index+1]); 
-  const divItem = document.createElement('div');
-  divItem.classList.add("shoppingCart-container__empty");
-  if(shoppingCart.getProducts().length === 0){
-      divItem.innerHTML = `<h2>No hay productos en el carrito</h2>`;
-      shoppingCartContainer.appendChild(divItem);
+  const entry = cartEntry(event);
+  if (!entry || !shoppingCart.deleteByIndex(entry.index)) return;
+  entry.row.remove();
+  if (shoppingCart.totalElementos() === 0 && !shoppingCartContainer.querySelector('.shoppingCart-container__empty')) {
+    const empty = document.createElement('div');
+    empty.classList.add('shoppingCart-container__empty');
+    const title = document.createElement('h2');
+    title.textContent = 'No hay productos en el carrito';
+    empty.append(title);
+    shoppingCartContainer.append(empty);
   }
-  item.remove();
   updateShoppingCartTotal();
 }
-function plusClicked(event) {
-  const button = event.target;
-  const item = button.closest(".cart-item__count-container");
-  const nameItem = button.closest(".cart-item__description");
-  //Buscar el index de un objeto por su nombre
-  const index = shoppingCart
-    .getProducts()
-    .findIndex(
-      (product) =>
-        product.getNameFood() ===
-        nameItem.querySelector(".cart-item__description h3").textContent
-    );
-
-  const itemAmount = item.querySelector(
-    ".cart-item__count-number p"
-  ).textContent;
-  const itemAmountValue = parseInt(itemAmount);
-  const amountItem = itemAmountValue + 1;
-  item.querySelector(".cart-item__count-number p").textContent = amountItem;
-  updateShoppingCartTotal();
-}
-function minusClicked(event) {
-  const button = event.target;
-  const item = button.closest(".cart-item__count-container");
-  const itemAmount = item.querySelector(
-    ".cart-item__count-number p"
-  ).textContent;
-  const nameItem = button.closest(".cart-item__description");
-  
-  const itemAmountValue = parseInt(itemAmount);
-  let amountItem = 1;
-  if (itemAmountValue > 1) {
-    amountItem = itemAmountValue - 1;
-  }
-  item.querySelector(".cart-item__count-number p").textContent = amountItem;
-  let index = shoppingCart
-  .getProducts()
-  .findIndex(
-    (product) =>
-      product.getNameFood() ===
-      nameItem.querySelector(".cart-item__description h3").textContent
-  );
+function changeQuantity(event, delta) {
+  const entry = cartEntry(event);
+  if (!entry) return;
+  const amount = Math.max(1, entry.product.getAmount() + delta);
+  if (!Number.isSafeInteger(amount)) return;
+  entry.product.setAmount(amount);
+  entry.row.querySelector('.cart-item__count-number p').textContent = amount;
   updateShoppingCartTotal();
 }
 function addItemToShoppingCart(name, amount, description, price, img) {
@@ -445,26 +95,25 @@ function addItemToShoppingCart(name, amount, description, price, img) {
                 <div class="item_delete"></div>
                 `;
   divItem.innerHTML = shoppingCartTags;
+  divItem.dataset.name = name;
+  divItem.dataset.price = String(price);
+  for (const [selector, label] of [['.cart-item__count-plus', 'Aumentar cantidad'], ['.cart-item__count-minus', 'Disminuir cantidad'], ['.item_delete', 'Eliminar producto']]) {
+    const control = divItem.querySelector(selector);
+    control.tabIndex = 0;
+    control.setAttribute('role', 'button');
+    control.setAttribute('aria-label', label);
+  }
   shoppingCartContainer.append(divItem);
   updateShoppingCartTotal();
 }
-function updateShoppingCartTotal(){
-  let total = 0;
-  let totalAmount = 0;
-  const shoppingCartTotal = document.querySelector("#shoppingtotalPay");
-  const shoppingCartTotalAmount = document.querySelector("#totalProducts");
-  const totalProductsHeader = document.querySelector("#totalProductsHeader");
-  const shoppingCartItems = document.querySelectorAll(".shoppingCart__item");
-  shoppingCartItems.forEach((item) => {
-    const itemPrice = item.querySelector(".cart-item__description .cart-item__price").textContent;
-    const itemPriceValue = parseFloat(itemPrice.replace("Precio: S/. ",""));
-    const itemAmount = item.querySelector(".cart-item__description  .cart-item__count .cart-item__count-container .cart-item__count-number #count-cart").textContent;
-    const itemAmountValue = parseInt(itemAmount);
-    total += itemPriceValue * itemAmountValue;
-    totalAmount += itemAmountValue;
+function updateShoppingCartTotal() {
+  const values = {
+    shoppingtotalPay: 'S/. ' + shoppingCart.priceTotal().toFixed(2),
+    totalProducts: shoppingCart.totalProducts(),
+    totalProductsHeader: shoppingCart.totalProducts(),
+  };
+  for (const [id, value] of Object.entries(values)) {
+    const element = document.getElementById(id);
+    if (element) element.textContent = value;
   }
-  );
-  shoppingCartTotal.innerHTML = `S/. ${total}`;
-  shoppingCartTotalAmount.innerHTML = `${totalAmount}`;
-  totalProductsHeader.innerHTML = `${totalAmount}`;
 }
