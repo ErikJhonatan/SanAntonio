@@ -1,12 +1,11 @@
 class ShoppingCart{
+
     constructor(products = []){
         this.products = products;
     }
-    //Eliminar proudcto por index
-    removeProductByIndex(index){
-        this.products.splice(index, 1);
+    deleteByIndex(index){
+        this.products.splice(index,1);
     }
-    //Metodo que no permite agregar un producto si ya existe por descripcion
     addProductArray(product){
         let existe = false;
         for(let i = 0; i < this.products.length; i++){
@@ -18,6 +17,14 @@ class ShoppingCart{
             this.products.push(product);
             return true;
         }
+    }
+    findIndexProducts(name, price){
+        for(let i = 0; i < this.products.length; i++){
+            if(this.products[i].getNameFood() === name && this.products[i].getPrice() === price){
+                return i;
+            }
+        }
+        return -1;
     }
     removeProduct(product){
         this.products.splice(this.products.indexOf(product), 1);
@@ -39,6 +46,9 @@ class ShoppingCart{
             total += this.products[i].getAmount();
         }
         return total;
+    }
+    totalElementos(){
+        return this.products.length;
     }
     //getters
     getProducts(){
