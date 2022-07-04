@@ -392,8 +392,6 @@ function plusClicked(event) {
   const itemAmountValue = parseInt(itemAmount);
   const amountItem = itemAmountValue + 1;
   item.querySelector(".cart-item__count-number p").textContent = amountItem;
-  shoppingCart.getProducts()[index].setAmount(amountItem);
-  shoppingCart.getProducts()[index].calculatePrice();
   updateShoppingCartTotal();
 }
 function minusClicked(event) {
